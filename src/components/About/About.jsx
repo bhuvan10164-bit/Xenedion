@@ -262,11 +262,11 @@ export default function About({ onNavigate }) {
       </section>
 
       {/* 3. OUR APPROACH */}
-      <section className="about-section about-approach-dark">
+      <section className="about-section about-approach-section">
         <div className="container">
           <div className="section-header-centered">
-            <span className="section-tag section-tag-dark">Our Approach</span>
-            <h2 className="section-title approach-white-title">
+            <span className="section-tag">Our Approach</span>
+            <h2 className="section-title">
               Understand. Connect. Control. Improve.
             </h2>
             <div className="ribbon-gradient-bar ribbon-gradient-bar-center" />
