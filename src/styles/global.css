@@ -1,0 +1,229 @@
+/* Modern Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1.5rem);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-bg);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary-navy);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin-bottom: 1.25rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-electric-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-navy);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-electric-blue);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Skip Navigation Link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1.5rem;
+  background: var(--color-primary-navy);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  z-index: 9999;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: top var(--transition-normal);
+}
+
+.skip-to-content:focus {
+  top: 0;
+  outline: 2px solid var(--color-cyan);
+}
+
+/* Selection Styling */
+::selection {
+  background-color: var(--color-electric-blue);
+  color: #ffffff;
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-24);
+  }
+}
+
+.section-alt {
+  background-color: var(--color-surface-alt);
+}
+
+.section-dark {
+  background-color: var(--color-primary-navy);
+  color: var(--color-text-light);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+  color: #ffffff;
+}
+
+.section-dark p {
+  color: #CBD5E1;
+}
+
+/* Section Header Shared Styles */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-electric-blue);
+  background: var(--color-blue-tint);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(18, 100, 245, 0.15);
+}
+
+.section-tag-dark {
+  color: var(--color-cyan);
+  background: rgba(0, 221, 252, 0.1);
+  border-color: rgba(0, 221, 252, 0.25);
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.5vw + 0.5rem, 3rem);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.025em;
+}
+
+.section-subtitle {
+  font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);
+  font-weight: 600;
+  color: var(--color-electric-blue);
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+/* Ribbon Motif Vector Elements */
+.ribbon-gradient-bar {
+  height: 4px;
+  width: 72px;
+  background: linear-gradient(90deg, var(--color-cyan) 0%, var(--color-electric-blue) 40%, var(--color-purple) 70%, var(--color-orange) 100%);
+  border-radius: var(--radius-full);
+  margin-bottom: 2rem;
+}
+
+.ribbon-gradient-bar-center {
+  margin-left: auto;
+  margin-right: auto;
+}
