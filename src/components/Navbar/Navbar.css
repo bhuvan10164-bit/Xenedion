@@ -122,15 +122,6 @@
   box-shadow: 0 2px 10px rgba(9, 31, 64, 0.07);
 }
 
-.nav-active-indicator {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--color-electric-blue);
-  box-shadow: 0 0 8px rgba(18, 100, 245, 0.6);
-  display: inline-block;
-}
-
 /* Distinctive Action: Request a Demo */
 .navbar-action-desktop {
   display: none;
@@ -318,14 +309,6 @@
   background-color: var(--color-blue-tint);
   color: var(--color-electric-blue);
   padding-left: 1.25rem;
-}
-
-.mobile-active-pip {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-electric-blue);
-  box-shadow: 0 0 8px rgba(18, 100, 245, 0.5);
 }
 
 .mobile-drawer-footer {

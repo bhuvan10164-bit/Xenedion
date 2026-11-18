@@ -27,7 +27,7 @@ export default function Navbar({ activePage, setActivePage }) {
   }, [mobileMenuOpen]);
 
   const navItems = [
-    { id: 'home', label: 'Home Page' },
+    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'solutions', label: 'Solutions' },
     { id: 'industries', label: 'Industries' },
@@ -81,7 +81,6 @@ export default function Navbar({ activePage, setActivePage }) {
                     aria-current={isActive ? 'page' : undefined}
                   >
                     <span className="nav-link-text">{item.label}</span>
-                    {isActive && <span className="nav-active-indicator" />}
                   </button>
                 </li>
               );
@@ -153,7 +152,6 @@ export default function Navbar({ activePage, setActivePage }) {
                       onClick={() => handleNavClick(item.id)}
                     >
                       <span>{item.label}</span>
-                      {isActive && <span className="mobile-active-pip" />}
                     </button>
                   </li>
                 );
