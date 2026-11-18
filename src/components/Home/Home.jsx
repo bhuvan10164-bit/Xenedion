@@ -126,7 +126,7 @@ export default function Home({ onNavigate }) {
           y: 180,
           scale: 1.15,
           rotate: 15,
-          opacity: 0.25,
+          opacity: 0.85,
           ease: 'none',
         });
 
@@ -252,66 +252,90 @@ export default function Home({ onNavigate }) {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Ambient Conduits */}
-            <circle cx="400" cy="400" r="320" stroke="rgba(18, 100, 245, 0.15)" strokeWidth="1.5" strokeDasharray="6 10" />
-            <circle cx="400" cy="400" r="240" stroke="rgba(0, 221, 252, 0.2)" strokeWidth="2" />
-            <circle cx="400" cy="400" r="160" stroke="rgba(255, 100, 44, 0.18)" strokeWidth="1.5" strokeDasharray="4 8" />
+            {/* Ambient Conduits - Rich, Dark, and High-Contrast */}
+            <circle
+              cx="400"
+              cy="400"
+              r="330"
+              stroke="#091F40"
+              strokeOpacity="0.38"
+              strokeWidth="2.5"
+              strokeDasharray="6 10"
+            />
+            <circle
+              cx="400"
+              cy="400"
+              r="250"
+              stroke="#1264F5"
+              strokeOpacity="0.55"
+              strokeWidth="3"
+            />
+            <circle
+              cx="400"
+              cy="400"
+              r="170"
+              stroke="#FF642C"
+              strokeOpacity="0.6"
+              strokeWidth="2.5"
+              strokeDasharray="5 9"
+            />
 
-            {/* Interlaced Ribbon Loops modeled after XENedion emblem */}
+            {/* Interlaced Ribbon Loops modeled after XENedion emblem - Deep & Vibrant */}
             <path
               d="M220 540 C140 420, 240 220, 400 220 C560 220, 660 420, 580 540 C510 650, 290 650, 220 540 Z"
               stroke="url(#sculpture-grad-1)"
-              strokeWidth="24"
+              strokeWidth="32"
               strokeLinecap="round"
               className="sculpture-path-pulse"
             />
             <path
               d="M580 260 C660 380, 560 580, 400 580 C240 580, 140 380, 220 260 C290 150, 510 150, 580 260 Z"
               stroke="url(#sculpture-grad-2)"
-              strokeWidth="20"
+              strokeWidth="28"
               strokeLinecap="round"
               className="sculpture-path-flow"
             />
             <path
               d="M260 260 Q400 400 540 540"
               stroke="url(#sculpture-grad-accent)"
-              strokeWidth="12"
+              strokeWidth="18"
               strokeLinecap="round"
             />
             <path
               d="M540 260 Q400 400 260 540"
               stroke="url(#sculpture-grad-accent-2)"
-              strokeWidth="12"
+              strokeWidth="18"
               strokeLinecap="round"
             />
 
             {/* Central Glowing Energy Hub */}
-            <circle cx="400" cy="400" r="36" fill="url(#core-glow-grad)" />
-            <circle cx="400" cy="400" r="16" fill="#00DDFC" className="core-beacon" />
+            <circle cx="400" cy="400" r="42" fill="url(#core-glow-grad)" />
+            <circle cx="400" cy="400" r="22" fill="#091F40" />
+            <circle cx="400" cy="400" r="12" fill="#1264F5" className="core-beacon" />
 
             <defs>
               <linearGradient id="sculpture-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00DDFC" />
-                <stop offset="45%" stopColor="#1264F5" />
-                <stop offset="100%" stopColor="#7024E8" />
+                <stop offset="0%" stopColor="#0094B3" />
+                <stop offset="40%" stopColor="#1264F5" />
+                <stop offset="100%" stopColor="#5B18C9" />
               </linearGradient>
               <linearGradient id="sculpture-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#FF642C" />
-                <stop offset="50%" stopColor="#7024E8" />
-                <stop offset="100%" stopColor="#1264F5" />
+                <stop offset="0%" stopColor="#E64A19" />
+                <stop offset="45%" stopColor="#7024E8" />
+                <stop offset="100%" stopColor="#091F40" />
               </linearGradient>
               <linearGradient id="sculpture-grad-accent" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00DDFC" />
-                <stop offset="100%" stopColor="#1264F5" />
+                <stop offset="0%" stopColor="#0094B3" />
+                <stop offset="100%" stopColor="#0A52D4" />
               </linearGradient>
               <linearGradient id="sculpture-grad-accent-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FF642C" />
-                <stop offset="100%" stopColor="#7024E8" />
+                <stop offset="0%" stopColor="#E64A19" />
+                <stop offset="100%" stopColor="#5B18C9" />
               </linearGradient>
               <radialGradient id="core-glow-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#00DDFC" stopOpacity="0.8" />
-                <stop offset="60%" stopColor="#1264F5" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#040E1E" stopOpacity="0" />
+                <stop offset="0%" stopColor="#1264F5" stopOpacity="0.9" />
+                <stop offset="60%" stopColor="#7024E8" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#091F40" stopOpacity="0" />
               </radialGradient>
             </defs>
           </svg>
