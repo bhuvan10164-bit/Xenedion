@@ -57,7 +57,7 @@
   --font-size-3xl: 2.75rem;     /* 44px */
   --font-size-4xl: 3.5rem;      /* 56px */
   --font-size-5xl: 4.5rem;      /* 72px */
-  --font-size-hero: clamp(3rem, 6.5vw + 1rem, 5.75rem);
+  --font-size-hero: clamp(2.15rem, 3.2vw + 0.4rem, 3.25rem);
 
   /* Spacing Scale */
   --space-1: 0.25rem;
