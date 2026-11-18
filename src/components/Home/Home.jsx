@@ -404,8 +404,8 @@ export default function Home({ onNavigate }) {
       <section ref={challengeSectionRef} className="home-section challenge-circuit-section">
         <div className="container">
           <div className="challenge-circuit-header">
-            <span className="section-tag section-tag-dark">The Business Challenge</span>
-            <h2 className="section-title text-white">
+            <span className="section-tag">The Business Challenge</span>
+            <h2 className="section-title">
               Your Business Has Evolved. Have Your Systems Kept Up?
             </h2>
             <div className="ribbon-gradient-bar" />

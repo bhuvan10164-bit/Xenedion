@@ -19,8 +19,10 @@
   justify-content: center;
   padding-top: calc(var(--header-height) + 3rem);
   padding-bottom: 5rem;
-  background: var(--gradient-dark-canvas);
-  color: #ffffff;
+  background: radial-gradient(circle at 82% 25%, rgba(0, 221, 252, 0.08) 0%, rgba(18, 100, 245, 0.04) 35%, transparent 70%),
+              radial-gradient(circle at 12% 85%, rgba(255, 100, 44, 0.035) 0%, transparent 45%),
+              #FFFFFF;
+  color: var(--color-primary-navy);
   overflow: hidden;
 }
 
@@ -41,7 +43,7 @@
   height: 720px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 @media (max-width: 1024px) {
@@ -66,14 +68,14 @@
   position: absolute;
   inset: 15%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 221, 252, 0.25) 0%, rgba(18, 100, 245, 0.2) 40%, transparent 70%);
-  filter: blur(50px);
+  background: radial-gradient(circle, rgba(0, 221, 252, 0.16) 0%, rgba(18, 100, 245, 0.1) 40%, transparent 70%);
+  filter: blur(55px);
 }
 
 .hero-ribbon-sculpture {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 15px 35px rgba(0, 221, 252, 0.25));
+  filter: drop-shadow(0 20px 45px rgba(18, 100, 245, 0.16));
 }
 
 .sculpture-path-pulse {
@@ -119,9 +121,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(18, 100, 245, 0.06);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 221, 252, 0.3);
+  border: 1px solid rgba(18, 100, 245, 0.22);
   padding: 0.45rem 1.15rem;
   border-radius: var(--radius-full);
   width: fit-content;
@@ -132,8 +134,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--color-cyan);
-  box-shadow: 0 0 10px rgba(0, 221, 252, 0.9);
+  background-color: var(--color-electric-blue);
+  box-shadow: 0 0 10px rgba(18, 100, 245, 0.6);
 }
 
 .capsule-text {
@@ -142,7 +144,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-cyan);
+  color: var(--color-electric-blue);
 }
 
 /* Monumental Kinetic Headline */
@@ -155,7 +157,7 @@
   line-height: 1.08;
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: #ffffff;
+  color: var(--color-primary-navy);
 }
 
 .headline-line {
@@ -167,7 +169,7 @@
 }
 
 .gradient-word {
-  background: linear-gradient(135deg, #00DDFC 0%, #1264F5 50%, #FF642C 100%);
+  background: linear-gradient(135deg, #1264F5 0%, #7024E8 52%, #FF642C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -181,7 +183,7 @@
 .hero-paragraph-lead {
   font-size: clamp(1.15rem, 1.4vw + 0.3rem, 1.35rem);
   line-height: 1.65;
-  color: #F7F9FC;
+  color: var(--color-primary-navy);
   font-weight: 500;
   margin-bottom: 1.35rem;
 }
@@ -189,7 +191,7 @@
 .hero-paragraph-sub {
   font-size: var(--font-size-base);
   line-height: 1.7;
-  color: #94A3B8;
+  color: var(--color-text-secondary);
   margin-bottom: 1.15rem;
 }
 
@@ -206,15 +208,15 @@
   align-items: center;
   justify-content: center;
   gap: 0.65rem;
-  background: linear-gradient(135deg, #1264F5 0%, #00DDFC 100%);
-  color: #040E1E !important;
+  background: linear-gradient(135deg, #1264F5 0%, #0A52D4 100%);
+  color: #ffffff !important;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.9375rem;
   letter-spacing: 0.02em;
   padding: 1.05rem 2.25rem;
   border-radius: var(--radius-full);
-  box-shadow: 0 4px 24px rgba(0, 221, 252, 0.45);
+  box-shadow: 0 8px 24px rgba(18, 100, 245, 0.32);
   transition: all var(--transition-normal);
   cursor: pointer;
   border: none;
@@ -222,8 +224,8 @@
 
 .btn-cinematic-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 221, 252, 0.65);
-  background: linear-gradient(135deg, #00DDFC 0%, #1264F5 100%);
+  box-shadow: 0 12px 32px rgba(18, 100, 245, 0.45);
+  background: linear-gradient(135deg, #0A52D4 0%, #1264F5 100%);
 }
 
 .btn-cinematic-secondary {
@@ -231,23 +233,23 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(8px);
-  color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: #ffffff;
+  color: var(--color-primary-navy);
+  border: 1.5px solid var(--color-border-hairline);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.9375rem;
   padding: 1rem 2.15rem;
   border-radius: var(--radius-full);
+  box-shadow: var(--shadow-subtle);
   transition: all var(--transition-normal);
   cursor: pointer;
 }
 
 .btn-cinematic-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: var(--color-cyan);
-  color: var(--color-cyan);
+  background: var(--color-surface-alt);
+  border-color: var(--color-electric-blue);
+  color: var(--color-electric-blue);
   transform: translateY(-2px);
 }
 
@@ -257,7 +259,7 @@
   flex-direction: column;
   gap: 0.85rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--color-border-subtle);
 }
 
 @media (min-width: 640px) {
@@ -272,7 +274,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-cyan);
+  color: var(--color-electric-blue);
 }
 
 .conduit-title {
@@ -293,15 +295,16 @@
 }
 
 .conduit-chip {
-  background: rgba(255, 255, 255, 0.08);
+  background: #ffffff;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-xs);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #E2E8F0;
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-primary-navy);
+  box-shadow: 0 2px 6px rgba(9, 31, 64, 0.04);
 }
 
 .conduit-arrow {
-  color: var(--color-cyan);
+  color: var(--color-electric-blue);
   font-weight: 800;
 }
 
@@ -320,7 +323,7 @@
 .cue-line {
   width: 1px;
   height: 36px;
-  background: linear-gradient(180deg, var(--color-cyan) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--color-electric-blue) 0%, transparent 100%);
   animation: cueBounce 2s infinite ease-in-out;
 }
 
@@ -333,19 +336,21 @@
   font-family: var(--font-heading);
   font-size: 0.6875rem;
   letter-spacing: 0.15em;
-  color: #94A3B8;
+  color: var(--color-text-muted);
 }
 
 /* --------------------------------------------------------------------------
    SCENE 2: THE BUSINESS CHALLENGE (OPERATIONAL CIRCUIT)
    -------------------------------------------------------------------------- */
 .challenge-circuit-section {
-  background-color: var(--color-deep-navy);
-  color: #ffffff;
+  background-color: var(--color-surface-alt);
+  color: var(--color-primary-navy);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .challenge-circuit-header {
@@ -356,14 +361,14 @@
 .challenge-lead-prose {
   font-size: clamp(1.15rem, 1.4vw + 0.3rem, 1.3rem);
   line-height: 1.7;
-  color: #CBD5E1;
+  color: var(--color-text-secondary);
   margin-top: 1.5rem;
 }
 
 .consequences-stage-title {
   font-family: var(--font-heading);
   font-size: var(--font-size-md);
-  color: var(--color-cyan);
+  color: var(--color-electric-blue);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 2rem;
@@ -389,11 +394,11 @@
 }
 
 .consequence-circuit-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
   padding: 2rem 1.75rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(9, 31, 64, 0.05);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -402,10 +407,10 @@
 }
 
 .consequence-circuit-card:hover {
-  background: rgba(255, 255, 255, 0.07);
+  background: #ffffff;
   border-color: var(--color-orange);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(255, 100, 44, 0.2);
+  box-shadow: 0 16px 36px rgba(255, 100, 44, 0.12);
 }
 
 .circuit-card-topbar {
@@ -420,7 +425,7 @@
   font-size: 0.8125rem;
   font-weight: 800;
   color: var(--color-orange);
-  background: rgba(255, 100, 44, 0.15);
+  background: var(--color-orange-tint);
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-sm);
 }
@@ -432,7 +437,7 @@
 .circuit-item-text {
   font-family: var(--font-heading);
   font-size: var(--font-size-base);
-  color: #ffffff;
+  color: var(--color-primary-navy);
   font-weight: 600;
   line-height: 1.5;
   margin-bottom: 0;
@@ -461,12 +466,12 @@
 }
 
 .resolution-glass-panel {
-  background: linear-gradient(135deg, rgba(18, 100, 245, 0.15) 0%, rgba(0, 221, 252, 0.08) 100%);
-  border: 1.5px solid rgba(0, 221, 252, 0.35);
+  background: #ffffff;
+  border: 1.5px solid rgba(18, 100, 245, 0.22);
   border-radius: var(--radius-2xl);
   padding: 3.5rem 2.5rem;
   text-align: center;
-  box-shadow: var(--shadow-glow-cyan);
+  box-shadow: 0 15px 40px rgba(18, 100, 245, 0.08);
 }
 
 @media (min-width: 768px) {
@@ -484,8 +489,8 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-cyan);
-  background: rgba(0, 221, 252, 0.15);
+  color: var(--color-electric-blue);
+  background: rgba(18, 100, 245, 0.08);
   padding: 0.35rem 0.95rem;
   border-radius: var(--radius-full);
   margin-bottom: 1.5rem;
@@ -495,7 +500,7 @@
   font-family: var(--font-heading);
   font-size: clamp(1.35rem, 2.2vw + 0.3rem, 1.85rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-primary-navy);
   line-height: 1.35;
   margin-bottom: 1.75rem;
 }
@@ -504,7 +509,7 @@
   font-family: var(--font-heading);
   font-size: clamp(1.15rem, 1.6vw + 0.2rem, 1.4rem);
   font-weight: 700;
-  color: var(--color-cyan);
+  color: var(--color-electric-blue);
   margin-bottom: 0;
 }
 
@@ -557,12 +562,12 @@
 
 /* Monolith Glass Card */
 .monolith-glass-card {
-  background: var(--gradient-card-dark);
-  color: #ffffff;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+  color: var(--color-text-primary);
   padding: 3rem 2.5rem;
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-elevated);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(9, 31, 64, 0.08);
+  border: 1.5px solid rgba(18, 100, 245, 0.18);
   position: relative;
 }
 
@@ -577,13 +582,13 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--color-cyan);
-  box-shadow: 0 0 12px rgba(0, 221, 252, 0.8);
+  background-color: var(--color-electric-blue);
+  box-shadow: 0 0 12px rgba(18, 100, 245, 0.6);
 }
 
 .monolith-heading {
   font-size: var(--font-size-xl);
-  color: #ffffff !important;
+  color: var(--color-primary-navy) !important;
   margin-bottom: 0;
 }
 
@@ -601,15 +606,16 @@
 }
 
 .monolith-check-well {
-  color: var(--color-cyan);
+  color: var(--color-electric-blue);
   flex-shrink: 0;
   margin-top: 2px;
 }
 
 .monolith-text {
   font-size: var(--font-size-sm);
-  color: #E2E8F0;
+  color: var(--color-text-secondary);
   line-height: 1.55;
+  font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------
@@ -915,12 +921,12 @@
 
 .final-portal-card {
   position: relative;
-  background: var(--gradient-card-dark);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F0F6FF 60%, #F5F0FF 100%);
   border-radius: var(--radius-2xl);
   padding: 4.5rem 2.5rem;
   text-align: center;
-  box-shadow: var(--shadow-elevated);
-  border: 1px solid rgba(0, 221, 252, 0.25);
+  box-shadow: 0 20px 60px rgba(9, 31, 64, 0.08);
+  border: 1.5px solid rgba(18, 100, 245, 0.2);
   overflow: hidden;
 }
 
@@ -937,7 +943,7 @@
   width: 700px;
   height: 700px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 221, 252, 0.2) 0%, rgba(18, 100, 245, 0.15) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 221, 252, 0.12) 0%, rgba(18, 100, 245, 0.08) 40%, transparent 70%);
   pointer-events: none;
   filter: blur(50px);
 }
@@ -950,14 +956,14 @@
 }
 
 .portal-headline {
-  color: #ffffff !important;
+  color: var(--color-primary-navy) !important;
   font-size: clamp(2.15rem, 3.8vw + 0.5rem, 3.4rem);
   margin-bottom: 1.5rem;
 }
 
 .portal-lead {
   font-size: clamp(1.1rem, 1.3vw + 0.3rem, 1.3rem);
-  color: #CBD5E1;
+  color: var(--color-text-secondary);
   line-height: 1.7;
   margin-bottom: 3rem;
 }
