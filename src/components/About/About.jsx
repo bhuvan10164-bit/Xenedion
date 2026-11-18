@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Sparkles,
   GitMerge,
@@ -14,36 +14,43 @@ import {
 import './About.css';
 
 export default function About({ onNavigate }) {
+  const [activeStage, setActiveStage] = useState(0);
+
   const principles = [
     {
       num: '01',
       title: 'Simplify, rather than complicate, business operations.',
       desc: 'Eliminate needless friction and streamline complex administrative overhead across functions.',
-      icon: Sparkles
+      icon: Sparkles,
+      color: 'var(--color-electric-blue)'
     },
     {
       num: '02',
       title: 'Connect information rather than create silos.',
       desc: 'Unite operational data into a shared single source of truth across all business units.',
-      icon: GitMerge
+      icon: GitMerge,
+      color: 'var(--color-cyan)'
     },
     {
       num: '03',
       title: 'Improve processes rather than simply digitise existing inefficiencies.',
       desc: 'Transform and optimize end-to-end workflows rather than automating broken manual procedures.',
-      icon: Workflow
+      icon: Workflow,
+      color: 'var(--color-orange)'
     },
     {
       num: '04',
       title: 'Support management decisions with meaningful information.',
       desc: 'Deliver real-time consolidated visibility so leadership acts with speed, clarity, and precision.',
-      icon: BarChart3
+      icon: BarChart3,
+      color: 'var(--color-purple)'
     },
     {
       num: '05',
       title: 'Adapt to changing business requirements.',
       desc: 'Architected to scale seamlessly as new products, facilities, suppliers, and markets evolve.',
-      icon: Sliders
+      icon: Sliders,
+      color: 'var(--color-primary-navy)'
     }
   ];
 
@@ -52,32 +59,36 @@ export default function About({ onNavigate }) {
       step: '01',
       title: 'Understand the Business',
       desc: "Understand the organization's business model, operational requirements and process challenges.",
-      icon: Compass
+      icon: Compass,
+      tag: 'Stage 1 — Discovery'
     },
     {
       step: '02',
       title: 'Connect the Processes',
       desc: 'Bring different departments and business functions together through integrated workflows.',
-      icon: GitBranch
+      icon: GitBranch,
+      tag: 'Stage 2 — Integration'
     },
     {
       step: '03',
       title: 'Establish Operational Control',
       desc: 'Create structured processes and improve visibility across business activities.',
-      icon: ShieldCheck
+      icon: ShieldCheck,
+      tag: 'Stage 3 — Governance'
     },
     {
       step: '04',
       title: 'Enable Continuous Improvement',
       desc: 'Use business information and operational insights to identify opportunities for improvement.',
-      icon: TrendingUp
+      icon: TrendingUp,
+      tag: 'Stage 4 — Evolution'
     }
   ];
 
   return (
     <div className="about-page-view">
       {/* 1. ABOUT XENEDION MAIN */}
-      <section className="about-hero-section">
+      <section className="about-hero-editorial">
         <div className="container">
           <div className="about-header-block">
             <span className="section-tag">ABOUT XENEDION</span>
@@ -93,8 +104,8 @@ export default function About({ onNavigate }) {
                 Businesses today operate in an increasingly connected and competitive environment. Managing customers, suppliers, inventory, finances and people requires coordination across multiple functions. Yet many organizations continue to depend on disconnected systems and manual processes to manage their everyday operations.
               </p>
 
-              <div className="about-highlight-box">
-                <div className="about-highlight-bar" />
+              <div className="about-architectural-callout">
+                <div className="about-callout-glow-bar" />
                 <p className="about-highlight-title">
                   XENedion was conceived to address this challenge.
                 </p>
@@ -124,8 +135,10 @@ export default function About({ onNavigate }) {
                     height="667"
                     loading="eager"
                   />
+                  <div className="about-image-overlay" />
                 </div>
                 <div className="about-caption-card">
+                  <div className="caption-accent-pip" />
                   <p className="about-caption-quote">
                     "Connecting information, streamlining workflows and providing organizations with greater operational visibility."
                   </p>
@@ -137,7 +150,7 @@ export default function About({ onNavigate }) {
       </section>
 
       {/* 2. WHY XENEDION? BECAUSE EVERY PART OF YOUR BUSINESS MATTERS */}
-      <section className="about-section section-alt">
+      <section className="about-section section-alt about-why-matters-section">
         <div className="container">
           <div className="section-header-centered">
             <span className="section-tag">Why XENedion?</span>
@@ -166,13 +179,19 @@ export default function About({ onNavigate }) {
                   <div key={item.num} className="about-principle-card">
                     <div className="principle-card-top">
                       <span className="principle-num-badge">{item.num}</span>
-                      <div className="principle-icon-box">
-                        <Icon size={20} />
+                      <div
+                        className="principle-icon-box"
+                        style={{ color: item.color }}
+                      >
+                        <Icon size={22} />
                       </div>
                     </div>
                     <h4 className="principle-card-title">{item.title}</h4>
                     <p className="principle-card-desc">{item.desc}</p>
-                    <div className="principle-bottom-bar" />
+                    <div
+                      className="principle-bottom-bar"
+                      style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
+                    />
                   </div>
                 );
               })}
@@ -195,16 +214,23 @@ export default function About({ onNavigate }) {
             </p>
           </div>
 
+          {/* Interactive Process Stages */}
           <div className="about-stages-timeline">
-            {approachStages.map((stage) => {
+            {approachStages.map((stage, idx) => {
               const Icon = stage.icon;
+              const isSelected = activeStage === idx;
               return (
-                <div key={stage.step} className="approach-timeline-card">
+                <div
+                  key={stage.step}
+                  className={`approach-timeline-card ${isSelected ? 'timeline-card-active' : ''}`}
+                  onClick={() => setActiveStage(idx)}
+                >
                   <div className="timeline-node-circle">
                     <Icon size={24} />
                     <span className="node-step-label">{stage.step}</span>
                   </div>
                   <div className="timeline-card-content">
+                    <span className="timeline-stage-tag">{stage.tag}</span>
                     <h3 className="timeline-stage-title">{stage.title}</h3>
                     <p className="timeline-stage-desc">{stage.desc}</p>
                   </div>

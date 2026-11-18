@@ -10,7 +10,8 @@ import {
   Navigation,
   BarChart4,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Sparkles
 } from 'lucide-react';
 import './Solutions.css';
 
@@ -24,6 +25,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Build stronger customer relationships and manage your sales activities, opportunities, quotations and orders.',
       icon: Users,
       image: '/assets/images/crm-sales-analytics.jpg',
+      accent: 'var(--color-electric-blue)',
       keyCapabilities: [
         'End-to-end sales pipeline tracking and opportunity conversion.',
         'Instant quotation creation with pricing tier rules.',
@@ -37,6 +39,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Manage the complete order process, from order creation through processing and fulfillment.',
       icon: ClipboardList,
       image: '/assets/images/connected-operations.jpg',
+      accent: 'var(--color-cyan)',
       keyCapabilities: [
         'Centralized multichannel order capture and automatic verification.',
         'Real-time order status tracking from checkout to dispatch.',
@@ -50,6 +53,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Organize supplier relationships, purchasing activities, purchase orders and goods receipts.',
       icon: Truck,
       image: '/assets/images/procurement-coordination.jpg',
+      accent: 'var(--color-orange)',
       keyCapabilities: [
         'Supplier lifecycle management and vendor rating audits.',
         'Purchase requisition workflows with automated approval hierarchies.',
@@ -63,6 +67,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Maintain visibility into stock positions, movements and inventory transactions.',
       icon: Boxes,
       image: '/assets/images/inventory-fulfillment.jpg',
+      accent: 'var(--color-purple)',
       keyCapabilities: [
         'Multi-location real-time stock levels and automated reorder points.',
         'Batch, lot, and serial number tracking with expiration alerts.',
@@ -76,6 +81,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Bring greater structure and control to warehouse operations, stock handling and goods movement.',
       icon: Warehouse,
       image: '/assets/images/inventory-fulfillment.jpg',
+      accent: 'var(--color-electric-blue)',
       keyCapabilities: [
         'Zone, aisle, and bin management for optimized pick-and-pack paths.',
         'Barcode scanning integration for inbound receiving and outbound dispatch.',
@@ -89,6 +95,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Connect financial transactions with business operations and improve financial visibility.',
       icon: Coins,
       image: '/assets/images/crm-sales-analytics.jpg',
+      accent: 'var(--color-cyan)',
       keyCapabilities: [
         'Automated general ledger postings from operational transactions.',
         'Accounts receivable, automated invoicing, and credit control.',
@@ -102,6 +109,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Organize employee information and support structured human resource administration.',
       icon: UserCheck,
       image: '/assets/images/connected-operations.jpg',
+      accent: 'var(--color-orange)',
       keyCapabilities: [
         'Centralized digital employee profiles and departmental directory.',
         'Attendance tracking, leave management, and holiday schedules.',
@@ -115,6 +123,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Coordinate logistics-related activities and improve operational communication.',
       icon: Navigation,
       image: '/assets/images/inventory-fulfillment.jpg',
+      accent: 'var(--color-purple)',
       keyCapabilities: [
         'Outbound shipping manifest generation and carrier coordination.',
         'Vehicle dispatch planning, delivery route tracking, and proof of delivery.',
@@ -128,6 +137,7 @@ export default function Solutions({ onNavigate }) {
       tagline: 'Bring business information together to support monitoring, analysis and management decisions.',
       icon: BarChart4,
       image: '/assets/images/crm-sales-analytics.jpg',
+      accent: 'var(--color-electric-blue)',
       keyCapabilities: [
         'Executive visual dashboards uniting operations, sales, and finances.',
         'Drill-down reporting from high-level KPIs to underlying line transactions.',
@@ -167,7 +177,7 @@ export default function Solutions({ onNavigate }) {
                   className={`solutions-tab-pill ${isActive ? 'tab-pill-active' : ''}`}
                   onClick={() => setActiveTab(item.id)}
                 >
-                  <Icon size={18} />
+                  <Icon size={17} />
                   <span>{item.title}</span>
                 </button>
               );
@@ -178,11 +188,12 @@ export default function Solutions({ onNavigate }) {
           <div className="solution-spotlight-card">
             <div className="spotlight-content">
               <div className="spotlight-badge">
+                <Sparkles size={12} />
                 <span>Featured Capability</span>
               </div>
               <h2 className="spotlight-title">{currentSolution.title}</h2>
               <p className="spotlight-tagline">{currentSolution.tagline}</p>
-              
+
               <div className="spotlight-capabilities-list">
                 <h4 className="capabilities-label">Core Functional Highlights:</h4>
                 <ul>
@@ -216,6 +227,7 @@ export default function Solutions({ onNavigate }) {
                   width="1000"
                   height="667"
                 />
+                <div className="spotlight-image-overlay" />
               </div>
             </div>
           </div>
@@ -239,14 +251,17 @@ export default function Solutions({ onNavigate }) {
               return (
                 <div key={sol.id} className="solution-grid-card">
                   <div className="solution-grid-card-top">
-                    <div className="solution-grid-icon-box">
+                    <div
+                      className="solution-grid-icon-box"
+                      style={{ color: sol.accent }}
+                    >
                       <Icon size={24} />
                     </div>
                     <span className="solution-grid-number">0{index + 1}</span>
                   </div>
                   <h3 className="solution-grid-title">{sol.title}</h3>
                   <p className="solution-grid-desc">{sol.tagline}</p>
-                  
+
                   <div className="solution-grid-caps">
                     {sol.keyCapabilities.slice(0, 2).map((c, idx) => (
                       <div key={idx} className="grid-cap-bullet">
@@ -262,7 +277,7 @@ export default function Solutions({ onNavigate }) {
                       className="solution-select-btn"
                       onClick={() => {
                         setActiveTab(sol.id);
-                        window.scrollTo({ top: 400, behavior: 'smooth' });
+                        window.scrollTo({ top: 380, behavior: 'smooth' });
                       }}
                     >
                       <span>Explore this module</span>

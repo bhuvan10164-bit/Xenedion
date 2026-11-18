@@ -215,3 +215,4 @@ export default function Industries({ onNavigate }) {
     </div>
   );
 }
+

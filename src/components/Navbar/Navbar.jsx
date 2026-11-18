@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 import './Navbar.css';
 
 export default function Navbar({ activePage, setActivePage }) {
@@ -8,7 +8,7 @@ export default function Navbar({ activePage, setActivePage }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -46,7 +46,7 @@ export default function Navbar({ activePage, setActivePage }) {
   return (
     <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-container">
-        {/* Brand Logo */}
+        {/* Brand Logo with High-Contrast Background Protection */}
         <a
           href="#home"
           className="navbar-brand"
@@ -56,14 +56,18 @@ export default function Navbar({ activePage, setActivePage }) {
           }}
           aria-label="XENedion Home"
         >
-          <img
-            src="/assets/xenedion-logo.png"
-            alt="XENedion — Integrated Enterprise Resource Planning"
-            className="navbar-logo-img"
-          />
+          <div className="navbar-logo-badge">
+            <img
+              src="/assets/xenedion-logo.png"
+              alt="XENedion — Integrated Enterprise Resource Planning"
+              className="navbar-logo-img"
+              width="180"
+              height="40"
+            />
+          </div>
         </a>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links with Bespoke Interaction */}
         <nav className="navbar-desktop-nav" aria-label="Main Navigation">
           <ul className="navbar-nav-list">
             {navItems.map((item) => {
@@ -76,7 +80,8 @@ export default function Navbar({ activePage, setActivePage }) {
                     onClick={() => handleNavClick(item.id)}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    {item.label}
+                    <span className="nav-link-text">{item.label}</span>
+                    {isActive && <span className="nav-active-indicator" />}
                   </button>
                 </li>
               );
@@ -84,19 +89,21 @@ export default function Navbar({ activePage, setActivePage }) {
           </ul>
         </nav>
 
-        {/* Desktop Right CTA Action */}
+        {/* Desktop Distinctive Action: Request a Demo */}
         <div className="navbar-action-desktop">
           <button
             type="button"
-            className="navbar-cta-btn"
+            className="navbar-demo-btn"
             onClick={() => handleNavClick('contact')}
           >
-            <span>Request a Demo</span>
-            <ArrowRight size={15} />
+            <span className="demo-btn-glow" aria-hidden="true" />
+            <Sparkles size={14} className="demo-btn-sparkle" />
+            <span className="demo-btn-label">Request a Demo</span>
+            <ArrowRight size={14} className="demo-btn-arrow" />
           </button>
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Hamburger Toggle */}
         <button
           type="button"
           className="navbar-mobile-toggle"
@@ -105,7 +112,7 @@ export default function Navbar({ activePage, setActivePage }) {
           aria-controls="mobile-nav-drawer"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -117,18 +124,20 @@ export default function Navbar({ activePage, setActivePage }) {
       >
         <div className="mobile-drawer-inner">
           <div className="mobile-drawer-header">
-            <img
-              src="/assets/xenedion-logo.png"
-              alt="XENedion Logo"
-              className="navbar-logo-img mobile-logo-img"
-            />
+            <div className="navbar-logo-badge">
+              <img
+                src="/assets/xenedion-logo.png"
+                alt="XENedion Logo"
+                className="navbar-logo-img mobile-logo-img"
+              />
+            </div>
             <button
               type="button"
               className="mobile-drawer-close"
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Close menu"
             >
-              <X size={24} />
+              <X size={22} />
             </button>
           </div>
 
@@ -144,7 +153,7 @@ export default function Navbar({ activePage, setActivePage }) {
                       onClick={() => handleNavClick(item.id)}
                     >
                       <span>{item.label}</span>
-                      {isActive && <span className="mobile-active-dot" />}
+                      {isActive && <span className="mobile-active-pip" />}
                     </button>
                   </li>
                 );
@@ -155,11 +164,12 @@ export default function Navbar({ activePage, setActivePage }) {
           <div className="mobile-drawer-footer">
             <button
               type="button"
-              className="btn-primary mobile-cta-btn"
+              className="navbar-demo-btn mobile-demo-btn"
               onClick={() => handleNavClick('contact')}
             >
+              <Sparkles size={15} />
               <span>Request a Demo</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={15} />
             </button>
             <div className="ribbon-gradient-bar" style={{ marginTop: '1.25rem', marginBottom: '0.75rem' }} />
             <p className="mobile-footer-tagline">
@@ -169,7 +179,7 @@ export default function Navbar({ activePage, setActivePage }) {
         </div>
       </div>
 
-      {/* Mobile Overlay */}
+      {/* Mobile Backdrop */}
       {mobileMenuOpen && (
         <div
           className="navbar-backdrop"
