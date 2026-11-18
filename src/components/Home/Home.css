@@ -158,21 +158,23 @@
   line-height: 1.15;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--color-primary-navy);
+  color: #000000;
 }
 
 .headline-line {
   display: block;
+  color: #000000;
 }
 
 .headline-line-accent {
   margin-top: 0.35rem;
+  color: #000000;
 }
 
 .gradient-word {
-  background: linear-gradient(135deg, #1264F5 0%, #7024E8 52%, #FF642C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+  background: none;
   display: inline-block;
 }
 

@@ -357,9 +357,9 @@ export default function Home({ onNavigate }) {
                   <span className="hero-reveal-word">Business.</span>
                 </span>
                 <span className="headline-line headline-line-accent">
-                  <span className="hero-reveal-word gradient-word">Connected.</span>{' '}
-                  <span className="hero-reveal-word gradient-word">Controlled.</span>{' '}
-                  <span className="hero-reveal-word gradient-word">Informed.</span>
+                  <span className="hero-reveal-word">Connected.</span>{' '}
+                  <span className="hero-reveal-word">Controlled.</span>{' '}
+                  <span className="hero-reveal-word">Informed.</span>
                 </span>
               </h1>
             </div>
