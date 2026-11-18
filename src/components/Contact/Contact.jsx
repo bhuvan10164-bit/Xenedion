@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Send,
   CheckCircle,
@@ -14,7 +16,10 @@ import {
 } from 'lucide-react';
 import './Contact.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Contact() {
+  const contactRef = useRef(null);
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
@@ -72,11 +77,32 @@ export default function Contact() {
     'General ERP modernization / New implementation'
   ];
 
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.contact-header-block',
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.contact-form-wrapper',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, delay: 0.15, ease: 'power3.out' }
+      );
+    }, contactRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="contact-page-view">
+    <div className="contact-page-view" ref={contactRef}>
       <section className="contact-hero-section">
         <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered contact-header-block">
             <span className="section-tag">CONTACT US</span>
             <h1 className="section-title">
               Let's Talk About Your Business.

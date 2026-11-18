@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Sparkles,
   GitMerge,
@@ -13,8 +15,67 @@ import {
 } from 'lucide-react';
 import './About.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function About({ onNavigate }) {
   const [activeStage, setActiveStage] = useState(0);
+  const aboutContainerRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      // 1. Hero Entrance
+      gsap.fromTo(
+        '.about-header-block',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.about-split-layout',
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: 'power3.out' }
+      );
+
+      // 2. Principles Cards Stagger
+      gsap.fromTo(
+        '.about-principle-card',
+        { y: 40, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.about-principles-grid',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: 'power2.out',
+        }
+      );
+
+      // 3. Approach Timeline Cards Stagger
+      gsap.fromTo(
+        '.approach-timeline-card',
+        { y: 40, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.about-stages-timeline',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power2.out',
+        }
+      );
+    }, aboutContainerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const principles = [
     {
@@ -86,7 +147,7 @@ export default function About({ onNavigate }) {
   ];
 
   return (
-    <div className="about-page-view">
+    <div className="about-page-view" ref={aboutContainerRef}>
       {/* 1. ABOUT XENEDION MAIN */}
       <section className="about-hero-editorial">
         <div className="container">

@@ -2,7 +2,8 @@
   /* Core Brand Colors (Exact Brand Palette) */
   --color-primary-navy: #091F40;
   --color-deep-navy: #040E1E;
-  --color-navy-elevated: #0C2347;
+  --color-midnight: #020712;
+  --color-navy-elevated: #0B2144;
   --color-electric-blue: #1264F5;
   --color-electric-blue-hover: #0A52D4;
   --color-cyan: #00DDFC;
@@ -13,19 +14,20 @@
 
   /* Typography Colors */
   --color-text-primary: #091F40;
-  --color-text-secondary: #3B4858;
+  --color-text-secondary: #475569;
   --color-text-muted: #64748B;
   --color-text-light: #F7F9FC;
   --color-text-inverse: #FFFFFF;
 
-  /* Surface & Border Colors */
+  /* Surfaces & Borders */
   --color-surface-bg: #FFFFFF;
   --color-surface-alt: #F7F9FC;
   --color-surface-card: #FFFFFF;
-  --color-surface-dark: #091F40;
-  --color-surface-dark-elevated: #0D264E;
+  --color-surface-dark: #040E1E;
+  --color-surface-dark-elevated: #091F40;
   --color-border-subtle: rgba(9, 31, 64, 0.08);
   --color-border-hairline: rgba(9, 31, 64, 0.12);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
   --color-border-interactive: rgba(18, 100, 245, 0.35);
 
   /* Brand Accents with Precise Opacities */
@@ -36,13 +38,13 @@
 
   /* Interlocking Ribbon Gradients */
   --gradient-ribbon: linear-gradient(90deg, #00DDFC 0%, #1264F5 35%, #7024E8 70%, #FF642C 100%);
-  --gradient-ribbon-subtle: linear-gradient(135deg, rgba(0, 221, 252, 0.12) 0%, rgba(18, 100, 245, 0.12) 50%, rgba(255, 100, 44, 0.08) 100%);
-  --gradient-navy-hero: linear-gradient(180deg, #FFFFFF 0%, #F5F8FC 100%);
+  --gradient-ribbon-vertical: linear-gradient(180deg, #00DDFC 0%, #1264F5 35%, #7024E8 70%, #FF642C 100%);
+  --gradient-dark-canvas: radial-gradient(circle at 50% 20%, #0B244D 0%, #040E1E 70%, #020712 100%);
   --gradient-card-dark: linear-gradient(135deg, #091F40 0%, #0E2A52 100%);
 
-  /* Typography Scale */
-  --font-heading: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Typography Scale — Syne for Display, DM Sans for Body */
+  --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Font Sizes */
   --font-size-xs: 0.75rem;     /* 12px */
@@ -51,11 +53,11 @@
   --font-size-md: 1.125rem;     /* 18px */
   --font-size-lg: 1.25rem;      /* 20px */
   --font-size-xl: 1.5rem;       /* 24px */
-  --font-size-2xl: 1.875rem;    /* 30px */
-  --font-size-3xl: 2.375rem;    /* 38px */
-  --font-size-4xl: 3.125rem;    /* 50px */
-  --font-size-5xl: 3.875rem;    /* 62px */
-  --font-size-hero: clamp(2.75rem, 5.5vw + 1rem, 4.75rem);
+  --font-size-2xl: 2rem;        /* 32px */
+  --font-size-3xl: 2.75rem;     /* 44px */
+  --font-size-4xl: 3.5rem;      /* 56px */
+  --font-size-5xl: 4.5rem;      /* 72px */
+  --font-size-hero: clamp(3rem, 6.5vw + 1rem, 5.75rem);
 
   /* Spacing Scale */
   --space-1: 0.25rem;
@@ -73,8 +75,8 @@
   --space-32: 8rem;
 
   /* Layout */
-  --container-max-width: 1320px;
-  --container-wide-width: 1440px;
+  --container-max-width: 1360px;
+  --container-wide-width: 1480px;
   --header-height: 86px;
 
   /* Radii */
@@ -83,18 +85,19 @@
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-xl: 28px;
-  --radius-2xl: 36px;
+  --radius-2xl: 40px;
   --radius-full: 9999px;
 
-  /* Bespoke Architectural Shadows */
+  /* Elevation & Shadows */
   --shadow-subtle: 0 2px 8px -2px rgba(9, 31, 64, 0.05), 0 1px 3px rgba(9, 31, 64, 0.03);
   --shadow-card: 0 10px 30px -4px rgba(9, 31, 64, 0.07), 0 2px 8px -2px rgba(9, 31, 64, 0.04);
   --shadow-hover: 0 22px 48px -8px rgba(9, 31, 64, 0.13), 0 6px 16px -2px rgba(9, 31, 64, 0.06);
-  --shadow-elevated: 0 32px 72px -16px rgba(9, 31, 64, 0.18), 0 12px 28px -6px rgba(9, 31, 64, 0.08);
-  --shadow-glow-blue: 0 10px 32px -4px rgba(18, 100, 245, 0.38);
+  --shadow-elevated: 0 32px 72px -16px rgba(9, 31, 64, 0.24);
+  --shadow-glow-cyan: 0 0 40px rgba(0, 221, 252, 0.35);
+  --shadow-glow-blue: 0 10px 32px -4px rgba(18, 100, 245, 0.45);
 
   /* Transitions */
   --transition-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 280ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }

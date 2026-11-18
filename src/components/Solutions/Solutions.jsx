@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Users,
   ClipboardList,
@@ -15,8 +17,48 @@ import {
 } from 'lucide-react';
 import './Solutions.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Solutions({ onNavigate }) {
   const [activeTab, setActiveTab] = useState('crm');
+  const solutionsRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.solutions-header-block',
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.solution-spotlight-card',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, delay: 0.2, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.sol-catalog-card',
+        { y: 35, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.solutions-full-grid',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          stagger: 0.08,
+          duration: 0.7,
+          ease: 'power2.out',
+        }
+      );
+    }, solutionsRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const solutionsData = [
     {
@@ -150,11 +192,11 @@ export default function Solutions({ onNavigate }) {
   const currentSolution = solutionsData.find((s) => s.id === activeTab) || solutionsData[0];
 
   return (
-    <div className="solutions-page-view">
+    <div className="solutions-page-view" ref={solutionsRef}>
       {/* 1. Header Section */}
       <section className="solutions-hero-section">
         <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered solutions-header-block">
             <span className="section-tag">One Platform. Multiple Business Functions.</span>
             <h1 className="section-title">
               Everything Your Business Needs to Operate Better.

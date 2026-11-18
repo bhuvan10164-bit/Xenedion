@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   BookOpen,
   FileText,
@@ -9,7 +11,57 @@ import {
 } from 'lucide-react';
 import './Resources.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Resources({ onNavigate }) {
+  const resourcesRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.resources-header-block',
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.resource-article-card',
+        { y: 40, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.resources-articles-grid',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power2.out',
+        }
+      );
+
+      gsap.fromTo(
+        '.faq-editorial-item',
+        { y: 30, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.resources-faq-list',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.7,
+          ease: 'power2.out',
+        }
+      );
+    }, resourcesRef);
+
+    return () => ctx.revert();
+  }, []);
   const resourceArticles = [
     {
       category: 'Executive Briefing',
@@ -57,11 +109,11 @@ export default function Resources({ onNavigate }) {
   ];
 
   return (
-    <div className="resources-page-view">
+    <div className="resources-page-view" ref={resourcesRef}>
       {/* 1. Hero Section */}
       <section className="resources-hero-section">
         <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered resources-header-block">
             <span className="section-tag">Knowledge & Insights</span>
             <h1 className="section-title">
               Enterprise Knowledge for Connected Business Operations

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ShoppingBag,
   Truck,
@@ -10,8 +12,48 @@ import {
 } from 'lucide-react';
 import './Industries.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Industries({ onNavigate }) {
   const [selectedIndustry, setSelectedIndustry] = useState('retail');
+  const industriesRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.industries-header-block',
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.industry-spotlight-box',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, delay: 0.15, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.industry-matrix-card',
+        { y: 35, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.industries-matrix-grid',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.75,
+          ease: 'power2.out',
+        }
+      );
+    }, industriesRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const industryProfiles = [
     {
@@ -89,11 +131,11 @@ export default function Industries({ onNavigate }) {
   const currentProfile = industryProfiles.find((ind) => ind.id === selectedIndustry) || industryProfiles[0];
 
   return (
-    <div className="industries-page-view">
+    <div className="industries-page-view" ref={industriesRef}>
       {/* 1. Header Hero */}
       <section className="industries-hero-section">
         <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered industries-header-block">
             <span className="section-tag">Designed for Your Industry</span>
             <h1 className="section-title">
               Business Processes May Differ.<br />The Need for Integration Doesn't.

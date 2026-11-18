@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Handshake,
   TrendingUp,
@@ -10,7 +12,41 @@ import {
 } from 'lucide-react';
 import './Partners.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Partners({ onNavigate }) {
+  const partnersRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.partners-header-block',
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
+      );
+
+      gsap.fromTo(
+        '.partner-track-card',
+        { y: 40, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.partner-tracks-grid',
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power2.out',
+        }
+      );
+    }, partnersRef);
+
+    return () => ctx.revert();
+  }, []);
   const partnerTracks = [
     {
       title: 'Implementation & Delivery Partners',
@@ -48,11 +84,11 @@ export default function Partners({ onNavigate }) {
   ];
 
   return (
-    <div className="partners-page-view">
+    <div className="partners-page-view" ref={partnersRef}>
       {/* 1. Hero Section */}
       <section className="partners-hero-section">
         <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered partners-header-block">
             <span className="section-tag">Partner Program</span>
             <h1 className="section-title">
               Expand Your Impact. Deliver Connected Enterprise Value.
