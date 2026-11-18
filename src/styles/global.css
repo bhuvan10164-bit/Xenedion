@@ -45,8 +45,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--color-primary-navy);
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: normal;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
 }
 
 p {
