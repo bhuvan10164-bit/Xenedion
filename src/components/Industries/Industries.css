@@ -1,16 +1,18 @@
 /* ==========================================================================
-   Industries Component — Creative Enterprise Redesign
+   Industries Component — Webflow-Inspired Editorial Redesign
    ========================================================================== */
 
 .industries-page-view {
   display: flex;
   flex-direction: column;
+  background-color: var(--color-surface-bg);
 }
 
 .industries-hero-section {
   padding-top: calc(var(--space-12));
   padding-bottom: var(--space-20);
-  background: var(--gradient-navy-hero);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFD 100%);
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 @media (min-width: 1024px) {
@@ -20,17 +22,24 @@
   }
 }
 
+.industries-header-block {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .industries-hero-lead {
-  font-size: clamp(1.1rem, 1.3vw + 0.3rem, 1.25rem);
+  font-size: clamp(1.05rem, 1.2vw + 0.2rem, 1.2rem);
   color: var(--color-text-secondary);
   margin-top: 1.25rem;
   margin-bottom: 0;
 }
 
+/* Industry Selection Pills */
 .industry-selection-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.85rem;
+  gap: 0.65rem;
   justify-content: center;
   margin-top: 3rem;
   margin-bottom: 3.5rem;
@@ -39,32 +48,32 @@
 .industry-pill-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.85rem 1.85rem;
+  gap: 0.55rem;
+  padding: 0.75rem 1.65rem;
   border-radius: var(--radius-full);
-  background-color: #ffffff;
-  border: 1px solid var(--color-border-subtle);
+  background-color: #FFFFFF;
+  border: 1px solid rgba(9, 31, 64, 0.08);
   color: var(--color-text-secondary);
-  font-family: var(--font-heading);
-  font-size: var(--font-size-sm);
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-subtle);
+  transition: all 180ms ease;
+  box-shadow: 0 2px 6px rgba(9, 31, 64, 0.03);
 }
 
 .industry-pill-btn:hover {
   border-color: var(--color-electric-blue);
-  color: var(--color-electric-blue);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card);
+  color: var(--color-primary-navy);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(18, 100, 245, 0.08);
 }
 
 .industry-pill-active {
-  background: linear-gradient(135deg, #091F40 0%, #0E2A52 100%);
-  border-color: var(--color-primary-navy);
-  color: #ffffff !important;
-  box-shadow: 0 8px 24px rgba(9, 31, 64, 0.3);
+  background: #091F40;
+  border-color: #091F40;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(9, 31, 64, 0.2);
 }
 
 .industry-pill-active svg {
@@ -73,10 +82,10 @@
 
 /* Spotlight Box */
 .industry-spotlight-box {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: var(--radius-2xl);
-  border: 1px solid var(--color-border-subtle);
-  box-shadow: var(--shadow-elevated);
+  border: 1px solid rgba(9, 31, 64, 0.08);
+  box-shadow: 0 20px 50px -10px rgba(9, 31, 64, 0.08);
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
@@ -100,54 +109,59 @@
 
 .industry-spotlight-tag {
   display: inline-flex;
+  align-items: center;
   font-family: var(--font-heading);
   font-size: 0.6875rem;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-orange);
-  background-color: var(--color-orange-tint);
-  padding: 0.35rem 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--color-electric-blue);
+  background: rgba(18, 100, 245, 0.07);
+  padding: 0.35rem 0.95rem;
   border-radius: var(--radius-full);
-  width: fit-content;
   margin-bottom: 1.25rem;
+  width: fit-content;
 }
 
 .industry-spotlight-name {
-  font-size: clamp(2.15rem, 3.2vw + 0.5rem, 2.85rem);
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 2.6vw + 0.3rem, 2.6rem);
   color: var(--color-primary-navy);
-  letter-spacing: -0.025em;
   margin-bottom: 0.75rem;
+  line-height: 1.2;
 }
 
 .industry-spotlight-tagline {
-  font-size: clamp(1rem, 1.2vw + 0.2rem, 1.15rem);
-  color: var(--color-electric-blue);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
   font-weight: 600;
-  line-height: 1.5;
+  color: var(--color-electric-blue);
   margin-bottom: 1.25rem;
+  line-height: 1.45;
 }
 
 .industry-spotlight-overview {
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
   line-height: 1.7;
-  margin-bottom: 1.75rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
 }
 
 .industry-challenges-card {
-  background-color: var(--color-surface-alt);
+  background: var(--color-surface-alt);
   padding: 1.75rem;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-subtle);
   margin-bottom: 2rem;
 }
 
 .challenges-title {
-  font-size: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  color: var(--color-primary-navy);
   margin-bottom: 1rem;
 }
 
@@ -156,21 +170,27 @@
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  padding: 0;
+  margin: 0;
 }
 
 .industry-challenges-card li {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  font-size: var(--font-size-sm);
-  color: var(--color-primary-navy);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
   line-height: 1.5;
 }
 
 .check-bullet-icon {
-  color: var(--color-orange);
+  color: var(--color-electric-blue);
   flex-shrink: 0;
   margin-top: 2px;
+}
+
+.industry-spotlight-cta {
+  display: flex;
 }
 
 .industry-spotlight-image-wrap {
@@ -178,11 +198,12 @@
 }
 
 .industry-image-frame {
+  position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
   aspect-ratio: 4 / 3;
-  position: relative;
+  box-shadow: 0 16px 36px rgba(9, 31, 64, 0.08);
+  border: 1px solid rgba(9, 31, 64, 0.06);
 }
 
 .industry-feature-img {
@@ -192,16 +213,17 @@
   display: block;
 }
 
-/* All Industries Section */
+/* 2. Overview Deck */
 .all-industries-section {
-  padding-top: var(--space-20);
-  padding-bottom: var(--space-20);
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-24);
+  background-color: var(--color-surface-alt);
 }
 
 .industries-card-deck {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.75rem;
+  gap: 1.5rem;
   margin-top: 3.5rem;
 }
 
@@ -215,56 +237,60 @@
   .industries-card-deck {
     grid-template-columns: repeat(3, 1fr);
   }
-  .industries-card-deck > :nth-child(4),
-  .industries-card-deck > :nth-child(5) {
-    grid-column: span 1;
+}
+
+@media (min-width: 1280px) {
+  .industries-card-deck {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
 .industry-deck-card {
-  background-color: #ffffff;
+  background: #FFFFFF;
   border-radius: var(--radius-xl);
-  padding: 2.25rem 2rem;
-  border: 1px solid var(--color-border-subtle);
-  box-shadow: var(--shadow-subtle);
+  padding: 2.25rem 1.75rem;
+  border: 1px solid rgba(9, 31, 64, 0.08);
+  box-shadow: 0 4px 14px rgba(9, 31, 64, 0.03);
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-normal);
+  transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .industry-deck-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--color-electric-blue);
+  box-shadow: 0 16px 36px -4px rgba(9, 31, 64, 0.09);
+  border-color: rgba(18, 100, 245, 0.3);
 }
 
 .deck-card-icon-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-md);
-  background-color: var(--color-orange-tint);
-  color: var(--color-orange);
+  background: rgba(18, 100, 245, 0.07);
+  color: var(--color-electric-blue);
   margin-bottom: 1.5rem;
 }
 
 .deck-card-name {
-  font-size: var(--font-size-lg);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
   color: var(--color-primary-navy);
   margin-bottom: 0.5rem;
 }
 
 .deck-card-tagline {
-  font-size: var(--font-size-xs);
-  font-weight: 700;
+  font-size: 0.8125rem;
+  font-weight: 600;
   color: var(--color-electric-blue);
-  margin-bottom: 1rem;
+  line-height: 1.45;
+  margin-bottom: 0.95rem;
 }
 
 .deck-card-desc {
-  font-size: var(--font-size-xs);
+  font-size: 0.84rem;
   color: var(--color-text-secondary);
   line-height: 1.6;
   margin-bottom: 1.75rem;
@@ -274,19 +300,22 @@
 .deck-card-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--color-primary-navy);
+  gap: 0.45rem;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-electric-blue);
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   margin-top: auto;
-  transition: all var(--transition-fast);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 1rem;
+  transition: all 180ms ease;
 }
 
 .deck-card-btn:hover {
-  color: var(--color-electric-blue);
-  gap: 0.55rem;
+  color: var(--color-primary-navy);
+  gap: 0.65rem;
 }

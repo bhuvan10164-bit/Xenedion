@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import logoImg from '../../assets/xenedion-logo.png';
 import './Navbar.css';
 
 export default function Navbar({ activePage, setActivePage }) {
@@ -8,7 +9,7 @@ export default function Navbar({ activePage, setActivePage }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -46,7 +47,7 @@ export default function Navbar({ activePage, setActivePage }) {
   return (
     <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-container">
-        {/* Brand Logo with High-Contrast Background Protection */}
+        {/* Brand Logo with Clean Architectural Presentation */}
         <a
           href="#home"
           className="navbar-brand"
@@ -58,7 +59,7 @@ export default function Navbar({ activePage, setActivePage }) {
         >
           <div className="navbar-logo-badge">
             <img
-              src="/assets/xenedion-logo.png"
+              src={logoImg || "/assets/xenedion-logo.png"}
               alt="XENedion — Integrated Enterprise Resource Planning"
               className="navbar-logo-img"
               width="180"
@@ -67,7 +68,7 @@ export default function Navbar({ activePage, setActivePage }) {
           </div>
         </a>
 
-        {/* Desktop Navigation Links with Bespoke Interaction */}
+        {/* Desktop Navigation Links — Editorial Precision */}
         <nav className="navbar-desktop-nav" aria-label="Main Navigation">
           <ul className="navbar-nav-list">
             {navItems.map((item) => {
@@ -81,6 +82,7 @@ export default function Navbar({ activePage, setActivePage }) {
                     aria-current={isActive ? 'page' : undefined}
                   >
                     <span className="nav-link-text">{item.label}</span>
+                    {isActive && <span className="nav-link-active-bar" />}
                   </button>
                 </li>
               );
@@ -95,7 +97,7 @@ export default function Navbar({ activePage, setActivePage }) {
             className="navbar-demo-btn"
             onClick={() => handleNavClick('contact')}
           >
-            <span className="demo-btn-glow" aria-hidden="true" />
+            <span className="demo-btn-shimmer" aria-hidden="true" />
             <Sparkles size={14} className="demo-btn-sparkle" />
             <span className="demo-btn-label">Request a Demo</span>
             <ArrowRight size={14} className="demo-btn-arrow" />
@@ -111,7 +113,7 @@ export default function Navbar({ activePage, setActivePage }) {
           aria-controls="mobile-nav-drawer"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -125,7 +127,7 @@ export default function Navbar({ activePage, setActivePage }) {
           <div className="mobile-drawer-header">
             <div className="navbar-logo-badge">
               <img
-                src="/assets/xenedion-logo.png"
+                src={logoImg || "/assets/xenedion-logo.png"}
                 alt="XENedion Logo"
                 className="navbar-logo-img mobile-logo-img"
               />
@@ -136,22 +138,27 @@ export default function Navbar({ activePage, setActivePage }) {
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Close menu"
             >
-              <X size={22} />
+              <X size={20} />
             </button>
           </div>
 
           <nav className="mobile-nav" aria-label="Mobile Navigation">
             <ul className="mobile-nav-list">
-              {navItems.map((item) => {
+              {navItems.map((item, idx) => {
                 const isActive = activePage === item.id;
                 return (
-                  <li key={item.id} className="mobile-nav-item">
+                  <li
+                    key={item.id}
+                    className="mobile-nav-item"
+                    style={{ animationDelay: `${idx * 40}ms` }}
+                  >
                     <button
                       type="button"
                       className={`mobile-nav-link ${isActive ? 'mobile-nav-link-active' : ''}`}
                       onClick={() => handleNavClick(item.id)}
                     >
                       <span>{item.label}</span>
+                      <ArrowRight size={15} className="mobile-link-arrow" />
                     </button>
                   </li>
                 );

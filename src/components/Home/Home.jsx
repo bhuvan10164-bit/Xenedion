@@ -27,8 +27,10 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home({ onNavigate }) {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
-  const ribbonSculptureRef = useRef(null);
   const challengeSectionRef = useRef(null);
+  const horizontalSectionRef = useRef(null);
+  const horizontalTrackRef = useRef(null);
+  const progressBarRef = useRef(null);
 
   const challengeConsequences = [
     'Disconnected systems and fragmented information.',
@@ -77,32 +79,37 @@ export default function Home({ onNavigate }) {
     { id: 'automotive', name: 'Automotive', icon: Car, detail: 'Serialized parts tracking, warranty records, assembly schedules, and dealership logistics.' }
   ];
 
-  // Lifecycle-safe GSAP Context setup
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero Entrance Animation
+      // 1. Hero Load Entrance Animation
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       heroTl
         .fromTo(
-          '.hero-reveal-word',
-          { y: 80, opacity: 0, rotateX: -20 },
-          { y: 0, opacity: 1, rotateX: 0, duration: 1.1, stagger: 0.12 }
+          '.hero-badge-capsule',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7 }
         )
         .fromTo(
-          '.hero-sculpture-wrap',
-          { scale: 0.82, opacity: 0, rotate: -10 },
-          { scale: 1, opacity: 1, rotate: 0, duration: 1.4, ease: 'expo.out' },
-          '-=0.8'
+          '.hero-reveal-word',
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, stagger: 0.08 },
+          '-=0.4'
         )
         .fromTo(
           '.hero-editorial-fade',
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, stagger: 0.15 },
-          '-=0.9'
+          { y: 25, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.12 },
+          '-=0.6'
+        )
+        .fromTo(
+          '.hero-canvas-art-plane',
+          { scale: 0.92, opacity: 0, y: 30 },
+          { scale: 1, opacity: 1, y: 0, duration: 1.1, ease: 'expo.out' },
+          '-=0.7'
         )
         .fromTo(
           '.hero-action-cluster',
@@ -111,113 +118,135 @@ export default function Home({ onNavigate }) {
           '-=0.5'
         );
 
-      // 2. Responsive ScrollTrigger MatchMedia
+      // 2. Responsive ScrollTrigger
       const mm = gsap.matchMedia();
 
       mm.add('(min-width: 992px)', () => {
-        // Desktop Scroll-driven Hero Parallax & Sculpture Morph
-        gsap.to('.hero-sculpture-wrap', {
+        // Animation A: Hero-to-content transition parallax
+        gsap.to('.hero-canvas-art-plane', {
           scrollTrigger: {
             trigger: heroRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 1.2,
+            scrub: 1,
           },
-          y: 180,
-          scale: 1.15,
-          rotate: 15,
+          y: 70,
+          scale: 0.96,
           opacity: 0.85,
           ease: 'none',
         });
 
-        gsap.to('.hero-editorial-column', {
+        gsap.to('.hero-headline-column', {
           scrollTrigger: {
             trigger: heroRef.current,
             start: 'top top',
-            end: 'bottom 20%',
+            end: 'bottom 40%',
             scrub: 0.8,
           },
-          y: -100,
-          opacity: 0.15,
+          y: -40,
+          opacity: 0.45,
           ease: 'none',
         });
 
-        // 3. Scene 2 — The Business Challenge Staggered Cards Reveal
+        // Animation B & C: Sticky storytelling for Scene 2 (The Business Challenge)
         gsap.fromTo(
-          '.consequence-card-anim',
-          { y: 60, opacity: 0 },
+          '.consequence-circuit-card',
+          { y: 45, opacity: 0 },
           {
             scrollTrigger: {
               trigger: challengeSectionRef.current,
               start: 'top 75%',
               end: 'bottom 60%',
-              scrub: false,
-            },
-            y: 0,
-            opacity: 1,
-            stagger: 0.14,
-            duration: 0.85,
-            ease: 'power2.out',
-          }
-        );
-
-        // 4. Scene 3 — Introducing XENedion Monolith entrance
-        gsap.fromTo(
-          '.monolith-anim-box',
-          { x: 50, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: '.intro-editorial-section',
-              start: 'top 70%',
-            },
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-          }
-        );
-
-        // 5. Scene 4 — Functions Matrix Stagger
-        gsap.fromTo(
-          '.function-matrix-card',
-          { y: 40, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: '.functions-editorial-section',
-              start: 'top 75%',
-            },
-            y: 0,
-            opacity: 1,
-            stagger: 0.08,
-            duration: 0.7,
-            ease: 'power2.out',
-          }
-        );
-
-        // 6. Scene 5 — Why XENedion Principles Reveal
-        gsap.fromTo(
-          '.why-editorial-card',
-          { y: 50, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: '.why-editorial-section',
-              start: 'top 70%',
             },
             y: 0,
             opacity: 1,
             stagger: 0.12,
-            duration: 0.8,
+            duration: 0.75,
+            ease: 'power2.out',
+          }
+        );
+
+        // Animation C: Webflow-Style Horizontal Scroll Sequence for Scene 4 (9 Functions)
+        if (horizontalSectionRef.current && horizontalTrackRef.current) {
+          const track = horizontalTrackRef.current;
+          const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 120);
+
+          const horizontalTween = gsap.to(track, {
+            x: getScrollAmount,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: horizontalSectionRef.current,
+              start: 'top top',
+              end: () => '+=' + (track.scrollWidth - window.innerWidth + 200),
+              pin: true,
+              scrub: 1,
+              invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                if (progressBarRef.current) {
+                  progressBarRef.current.style.width = `${self.progress * 100}%`;
+                }
+              },
+            },
+          });
+        }
+
+        // Scene 3 — Introducing XENedion Monolith entrance
+        gsap.fromTo(
+          '.monolith-glass-card',
+          { x: 40, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: '.intro-ecosystem-section',
+              start: 'top 70%',
+            },
+            x: 0,
+            opacity: 1,
+            duration: 0.85,
             ease: 'power3.out',
+          }
+        );
+
+        // Scene 5 — Why XENedion Principles Reveal
+        gsap.fromTo(
+          '.why-editorial-card',
+          { y: 40, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: '.why-kinetic-section',
+              start: 'top 72%',
+            },
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.75,
+            ease: 'power3.out',
+          }
+        );
+
+        // Scene 6 — Industry Deck Reveal
+        gsap.fromTo(
+          '.industry-kinetic-card',
+          { y: 40, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: '.industries-kinetic-section',
+              start: 'top 75%',
+            },
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.7,
+            ease: 'power2.out',
           }
         );
       });
 
       mm.add('(max-width: 991px)', () => {
-        // Mobile-optimized gentle scroll reveals
-        gsap.utils.toArray('.consequence-card-anim, .function-matrix-card, .why-editorial-card').forEach((el) => {
+        // Mobile-optimized gentle scroll reveals without pinning
+        gsap.utils.toArray('.consequence-circuit-card, .function-matrix-card, .why-editorial-card, .industry-kinetic-card').forEach((el) => {
           gsap.fromTo(
             el,
-            { y: 30, opacity: 0 },
+            { y: 25, opacity: 0 },
             {
               scrollTrigger: {
                 trigger: el,
@@ -226,7 +255,7 @@ export default function Home({ onNavigate }) {
               },
               y: 0,
               opacity: 1,
-              duration: 0.6,
+              duration: 0.55,
               ease: 'power2.out',
             }
           );
@@ -240,118 +269,26 @@ export default function Home({ onNavigate }) {
   return (
     <div ref={containerRef} className="home-page-view">
       {/* ====================================================================
-          SCENE 1: CINEMATIC ENTERPRISE CANVAS (HERO)
+          SCENE 1: INTERACTIVE EDITORIAL CANVAS (HERO)
           ==================================================================== */}
       <section ref={heroRef} className="home-hero-cinematic">
-        {/* Kinetic 3D-Look Ribbon Sculpture Centerpiece */}
-        <div ref={ribbonSculptureRef} className="hero-sculpture-wrap" aria-hidden="true">
-          <div className="sculpture-ambient-glow" />
-          <svg
-            className="hero-ribbon-sculpture"
-            viewBox="0 0 800 800"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Ambient Conduits - Rich, Dark, and High-Contrast */}
-            <circle
-              cx="400"
-              cy="400"
-              r="330"
-              stroke="#091F40"
-              strokeOpacity="0.38"
-              strokeWidth="2.5"
-              strokeDasharray="6 10"
-            />
-            <circle
-              cx="400"
-              cy="400"
-              r="250"
-              stroke="#1264F5"
-              strokeOpacity="0.55"
-              strokeWidth="3"
-            />
-            <circle
-              cx="400"
-              cy="400"
-              r="170"
-              stroke="#FF642C"
-              strokeOpacity="0.6"
-              strokeWidth="2.5"
-              strokeDasharray="5 9"
-            />
+        {/* Subtle Architectural Dot Grid & Ambient Brand Glows */}
+        <div className="hero-grid-ambient" aria-hidden="true" />
+        <div className="hero-radial-glow glow-cyan" aria-hidden="true" />
+        <div className="hero-radial-glow glow-blue" aria-hidden="true" />
 
-            {/* Interlaced Ribbon Loops modeled after XENedion emblem - Deep & Vibrant */}
-            <path
-              d="M220 540 C140 420, 240 220, 400 220 C560 220, 660 420, 580 540 C510 650, 290 650, 220 540 Z"
-              stroke="url(#sculpture-grad-1)"
-              strokeWidth="32"
-              strokeLinecap="round"
-              className="sculpture-path-pulse"
-            />
-            <path
-              d="M580 260 C660 380, 560 580, 400 580 C240 580, 140 380, 220 260 C290 150, 510 150, 580 260 Z"
-              stroke="url(#sculpture-grad-2)"
-              strokeWidth="28"
-              strokeLinecap="round"
-              className="sculpture-path-flow"
-            />
-            <path
-              d="M260 260 Q400 400 540 540"
-              stroke="url(#sculpture-grad-accent)"
-              strokeWidth="18"
-              strokeLinecap="round"
-            />
-            <path
-              d="M540 260 Q400 400 260 540"
-              stroke="url(#sculpture-grad-accent-2)"
-              strokeWidth="18"
-              strokeLinecap="round"
-            />
+        <div className="container hero-canvas-container">
+          {/* Top Micro-Badge */}
+          <div className="hero-badge-capsule">
+            <span className="capsule-pip" />
+            <span className="capsule-text">Enterprise Resource Planning Platform</span>
+          </div>
 
-            {/* Central Glowing Energy Hub */}
-            <circle cx="400" cy="400" r="42" fill="url(#core-glow-grad)" />
-            <circle cx="400" cy="400" r="22" fill="#091F40" />
-            <circle cx="400" cy="400" r="12" fill="#1264F5" className="core-beacon" />
-
-            <defs>
-              <linearGradient id="sculpture-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0094B3" />
-                <stop offset="40%" stopColor="#1264F5" />
-                <stop offset="100%" stopColor="#5B18C9" />
-              </linearGradient>
-              <linearGradient id="sculpture-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#E64A19" />
-                <stop offset="45%" stopColor="#7024E8" />
-                <stop offset="100%" stopColor="#091F40" />
-              </linearGradient>
-              <linearGradient id="sculpture-grad-accent" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0094B3" />
-                <stop offset="100%" stopColor="#0A52D4" />
-              </linearGradient>
-              <linearGradient id="sculpture-grad-accent-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#E64A19" />
-                <stop offset="100%" stopColor="#5B18C9" />
-              </linearGradient>
-              <radialGradient id="core-glow-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#1264F5" stopOpacity="0.9" />
-                <stop offset="60%" stopColor="#7024E8" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#091F40" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-          </svg>
-        </div>
-
-        <div className="container hero-cinematic-container">
-          <div className="hero-cinematic-inner">
-            {/* Top Micro-Badge */}
-            <div className="hero-editorial-fade hero-badge-capsule">
-              <span className="capsule-pip" />
-              <span className="capsule-text">Enterprise Resource Planning Platform</span>
-            </div>
-
-            {/* Monumental Headline Composition */}
-            <div className="hero-monumental-headline-wrap">
-              <h1 className="hero-monumental-headline">
+          {/* New Hero Composition: Bespoke Interactive Editorial Canvas */}
+          <div className="hero-editorial-canvas-grid">
+            {/* Left/Main Editorial Column */}
+            <div className="hero-headline-column">
+              <h1 className="hero-editorial-headline">
                 <span className="headline-line">
                   <span className="hero-reveal-word">Your</span>{' '}
                   <span className="hero-reveal-word">Business.</span>
@@ -362,54 +299,139 @@ export default function Home({ onNavigate }) {
                   <span className="hero-reveal-word gradient-word">Informed.</span>
                 </span>
               </h1>
-            </div>
 
-            {/* Editorial Lead & Approved Paragraphs */}
-            <div className="hero-narrative-block">
-              <p className="hero-editorial-fade hero-paragraph-lead">
-                XENedion (XEN) is an integrated ERP platform designed to simplify business operations, connect processes and give you, the business owner or the business manager, complete visibility across your organization.
-              </p>
-              <p className="hero-editorial-fade hero-paragraph-sub">
-                Managing a business shouldn't mean managing multiple applications, disconnected spreadsheets and endless manual processes.
-              </p>
-              <p className="hero-editorial-fade hero-paragraph-sub">
-                XENedion brings your essential business functions together on one integrated platform, enabling your teams to work seamlessly, your processes to operate efficiently and your management to make informed decisions.
-              </p>
-            </div>
-
-            {/* Primary & Secondary CTAs */}
-            <div className="hero-action-cluster">
-              <button
-                type="button"
-                className="btn-cinematic-primary"
-                onClick={() => onNavigate('contact')}
-              >
-                <span>Request a Demo</span>
-                <ArrowRight size={17} className="btn-icon" />
-              </button>
-              <button
-                type="button"
-                className="btn-cinematic-secondary"
-                onClick={() => onNavigate('solutions')}
-              >
-                <span>Explore Solutions</span>
-              </button>
-            </div>
-
-            {/* Live Operational Conduit Tracker */}
-            <div className="hero-editorial-fade hero-conduit-tracker">
-              <div className="conduit-label-wrap">
-                <Network size={16} className="conduit-icon" />
-                <span className="conduit-title">Unified Operating Flow:</span>
+              {/* Exact Approved Paragraphs */}
+              <div className="hero-narrative-block">
+                <p className="hero-editorial-fade hero-paragraph-lead">
+                  XENedion (XEN) is an integrated ERP platform designed to simplify business operations, connect processes and give you, the business owner or the business manager, complete visibility across your organization.
+                </p>
+                <p className="hero-editorial-fade hero-paragraph-sub">
+                  Managing a business shouldn't mean managing multiple applications, disconnected spreadsheets and endless manual processes.
+                </p>
+                <p className="hero-editorial-fade hero-paragraph-sub">
+                  XENedion brings your essential business functions together on one integrated platform, enabling your teams to work seamlessly, your processes to operate efficiently and your management to make informed decisions.
+                </p>
               </div>
-              <div className="conduit-nodes">
-                <span className="conduit-chip">Sales</span>
-                <span className="conduit-arrow">→</span>
-                <span className="conduit-chip">Procurement</span>
-                <span className="conduit-arrow">→</span>
-                <span className="conduit-chip">Inventory</span>
-                <span className="conduit-arrow">→</span>
-                <span className="conduit-chip">Fulfillment</span>
+
+              {/* Primary & Secondary CTAs */}
+              <div className="hero-action-cluster">
+                <button
+                  type="button"
+                  className="btn-cinematic-primary"
+                  onClick={() => onNavigate('contact')}
+                >
+                  <span>Request a Demo</span>
+                  <ArrowRight size={17} className="btn-icon" />
+                </button>
+                <button
+                  type="button"
+                  className="btn-cinematic-secondary"
+                  onClick={() => onNavigate('solutions')}
+                >
+                  <span>Explore Solutions</span>
+                </button>
+              </div>
+
+              {/* Live Operational Conduit Tracker */}
+              <div className="hero-editorial-fade hero-conduit-tracker">
+                <div className="conduit-label-wrap">
+                  <Network size={16} className="conduit-icon" />
+                  <span className="conduit-title">Unified Operating Flow:</span>
+                </div>
+                <div className="conduit-nodes">
+                  <span className="conduit-chip">Sales</span>
+                  <span className="conduit-arrow">→</span>
+                  <span className="conduit-chip">Procurement</span>
+                  <span className="conduit-arrow">→</span>
+                  <span className="conduit-chip">Inventory</span>
+                  <span className="conduit-arrow">→</span>
+                  <span className="conduit-chip">Fulfillment</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right/Compositional Column: Layered Multi-Planar Visual Canvas */}
+            <div className="hero-canvas-art-plane" aria-label="Visual representation of integrated enterprise management">
+              {/* Layer 1: Connected Geometric SVG Ribbon Loop */}
+              <div className="art-plane-svg-hub" aria-hidden="true">
+                <svg viewBox="0 0 540 540" fill="none" className="art-ribbon-svg" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="270" cy="270" r="230" stroke="rgba(9, 31, 64, 0.08)" strokeWidth="1.5" strokeDasharray="4 8" />
+                  <circle cx="270" cy="270" r="160" stroke="rgba(18, 100, 245, 0.15)" strokeWidth="2" />
+                  <path
+                    d="M140 370 C90 290, 160 160, 270 160 C380 160, 450 290, 400 370 C350 450, 190 450, 140 370 Z"
+                    stroke="url(#hero-ribbon-g1)"
+                    strokeWidth="18"
+                    strokeLinecap="round"
+                    className="art-path-loop"
+                  />
+                  <path
+                    d="M400 170 C450 250, 380 380, 270 380 C160 380, 90 250, 140 170 C190 90, 350 90, 400 170 Z"
+                    stroke="url(#hero-ribbon-g2)"
+                    strokeWidth="14"
+                    strokeLinecap="round"
+                    className="art-path-counter-loop"
+                  />
+                  {/* Connected animated pulses */}
+                  <circle cx="270" cy="160" r="5" fill="#00DDFC" className="art-pulse-dot" />
+                  <circle cx="270" cy="380" r="5" fill="#FF642C" className="art-pulse-dot" />
+                  <defs>
+                    <linearGradient id="hero-ribbon-g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#00DDFC" />
+                      <stop offset="50%" stopColor="#1264F5" />
+                      <stop offset="100%" stopColor="#7024E8" />
+                    </linearGradient>
+                    <linearGradient id="hero-ribbon-g2" x1="100%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#FF642C" />
+                      <stop offset="50%" stopColor="#7024E8" />
+                      <stop offset="100%" stopColor="#1264F5" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              {/* Layer 2: Primary Layered Business Visual */}
+              <div className="art-photo-card card-primary-plane">
+                <div className="photo-frame">
+                  <img
+                    src="/assets/images/connected-operations.jpg"
+                    alt="Connected Enterprise Operations"
+                    className="art-img"
+                    width="600"
+                    height="400"
+                    loading="eager"
+                  />
+                  <div className="photo-card-glass-tag">
+                    <span className="glass-tag-pip" />
+                    <span className="glass-tag-text">Unified Operation Environment</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Layer 3: Secondary Overlapping Telemetry Card */}
+              <div className="art-photo-card card-secondary-plane">
+                <div className="photo-frame photo-frame-compact">
+                  <img
+                    src="/assets/images/crm-sales-analytics.jpg"
+                    alt="CRM and Sales Analytics"
+                    className="art-img"
+                    width="400"
+                    height="280"
+                    loading="lazy"
+                  />
+                  <div className="telemetry-pill">
+                    <span className="telemetry-indicator" />
+                    <span>Real-Time Departmental Sync</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Layer 4: Floating Micro-Indicator */}
+              <div className="art-floating-metric-badge">
+                <Sparkles size={14} className="metric-icon" />
+                <div className="metric-text-group">
+                  <span className="metric-label">Cross-Functional Core</span>
+                  <span className="metric-val">Single Source of Truth</span>
+                </div>
               </div>
             </div>
           </div>
@@ -423,50 +445,56 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ====================================================================
-          SCENE 2: THE BUSINESS CHALLENGE (OPERATIONAL CIRCUIT)
+          SCENE 2: THE BUSINESS CHALLENGE (STICKY STORYTELLING CIRCUIT)
           ==================================================================== */}
       <section ref={challengeSectionRef} className="home-section challenge-circuit-section">
         <div className="container">
-          <div className="challenge-circuit-header">
-            <span className="section-tag">The Business Challenge</span>
-            <h2 className="section-title">
-              Your Business Has Evolved. Have Your Systems Kept Up?
-            </h2>
-            <div className="ribbon-gradient-bar" />
-            <p className="challenge-lead-prose">
-              As businesses expand, its operational complexity increases. Different departments adopt different applications, information gets scattered and business processes become increasingly difficult to coordinate.
-            </p>
-          </div>
+          <div className="challenge-sticky-layout">
+            {/* Sticky Narrative Column on Left */}
+            <div className="challenge-sticky-left">
+              <div className="sticky-content-card">
+                <span className="section-tag">The Business Challenge</span>
+                <h2 className="section-title">
+                  Your Business Has Evolved. Have Your Systems Kept Up?
+                </h2>
+                <div className="ribbon-gradient-bar" />
+                <p className="challenge-lead-prose">
+                  As businesses expand, its operational complexity increases. Different departments adopt different applications, information gets scattered and business processes become increasingly difficult to coordinate.
+                </p>
 
-          <div className="consequences-circuit-stage">
-            <h3 className="consequences-stage-title">The consequences are familiar:</h3>
-            <div className="consequences-cards-grid">
-              {challengeConsequences.map((item, idx) => (
-                <div key={idx} className="consequence-circuit-card consequence-card-anim">
-                  <div className="circuit-card-topbar">
-                    <span className="circuit-index-pill">0{idx + 1}</span>
-                    <AlertCircle size={20} className="circuit-alert-icon" />
+                {/* Resolution Callout Panel */}
+                <div className="challenge-resolution-cinematic">
+                  <div className="resolution-glass-panel">
+                    <div className="resolution-sparkle-pill">
+                      <Sparkles size={13} />
+                      <span>The Core Bottleneck</span>
+                    </div>
+                    <p className="resolution-quote-headline">
+                      The real challenge isn't the number of applications you use. It's the lack of connection between them.
+                    </p>
+                    <p className="resolution-brand-accent">
+                      XEN brings your business together, seamlessly
+                    </p>
                   </div>
-                  <p className="circuit-item-text">{item}</p>
-                  <div className="circuit-glow-track" />
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom Resolution Box */}
-          <div className="challenge-resolution-cinematic">
-            <div className="resolution-glass-panel">
-              <div className="resolution-sparkle-pill">
-                <Sparkles size={14} />
-                <span>The Core Bottleneck</span>
               </div>
-              <p className="resolution-quote-headline">
-                The real challenge isn't the number of applications you use. It's the lack of connection between them.
-              </p>
-              <p className="resolution-brand-accent">
-                XEN brings your business together, seamlessly
-              </p>
+            </div>
+
+            {/* Scrolling Consequence Cards Column on Right */}
+            <div className="challenge-scrolling-right">
+              <h3 className="consequences-stage-title">The consequences are familiar:</h3>
+              <div className="consequences-cards-grid">
+                {challengeConsequences.map((item, idx) => (
+                  <div key={idx} className="consequence-circuit-card">
+                    <div className="circuit-card-topbar">
+                      <span className="circuit-index-pill">0{idx + 1}</span>
+                      <AlertCircle size={18} className="circuit-alert-icon" />
+                    </div>
+                    <p className="circuit-item-text">{item}</p>
+                    <div className="circuit-glow-track" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -513,7 +541,7 @@ export default function Home({ onNavigate }) {
             </div>
 
             {/* Right: With XEN you can (Monolith Card) */}
-            <div className="intro-ecosystem-monolith monolith-anim-box">
+            <div className="intro-ecosystem-monolith">
               <div className="monolith-glass-card">
                 <div className="monolith-header">
                   <div className="monolith-status-dot" />
@@ -538,23 +566,35 @@ export default function Home({ onNavigate }) {
 
       {/* ====================================================================
           SCENE 4: ONE PLATFORM. MULTIPLE BUSINESS FUNCTIONS
+          (WEBFLOW-INSPIRED HORIZONTAL PINNED STORYTELLING SCENE)
           ==================================================================== */}
-      <section className="home-section section-alt functions-kinetic-section">
-        <div className="container">
-          <div className="section-header-centered">
+      <section ref={horizontalSectionRef} className="home-section section-alt functions-horizontal-pinned-section">
+        <div className="horizontal-section-header-wrap container">
+          <div className="section-header-left">
             <span className="section-tag">One Platform. Multiple Business Functions.</span>
             <h2 className="section-title">
               Everything Your Business Needs to Operate Better.
             </h2>
-            <div className="ribbon-gradient-bar ribbon-gradient-bar-center" />
+            <div className="ribbon-gradient-bar" />
             <p className="functions-section-lead">
               XENedion brings together the essential functions required to manage your business.
             </p>
           </div>
 
-          <div className="functions-kinetic-grid">
+          {/* Interactive Progress Indicator Bar */}
+          <div className="horizontal-progress-track-wrapper" aria-hidden="true">
+            <div className="horizontal-progress-track">
+              <div ref={progressBarRef} className="horizontal-progress-fill" />
+            </div>
+            <span className="horizontal-scroll-hint">SCROLL HORIZONTALLY</span>
+          </div>
+        </div>
+
+        {/* Horizontal Card Track */}
+        <div className="functions-horizontal-track-container">
+          <div ref={horizontalTrackRef} className="functions-horizontal-track">
             {previewFunctions.map((func) => (
-              <div key={func.num} className="function-matrix-card">
+              <div key={func.num} className="function-horizontal-card">
                 <div className="function-card-topline">
                   <span className="function-num-tag">{func.num}</span>
                   <div
@@ -576,17 +616,25 @@ export default function Home({ onNavigate }) {
                 </div>
               </div>
             ))}
-          </div>
 
-          <div className="functions-explore-cta">
-            <button
-              type="button"
-              className="btn-cinematic-primary"
-              onClick={() => onNavigate('solutions')}
-            >
-              <span>Explore All Solutions</span>
-              <ArrowRight size={17} className="btn-icon" />
-            </button>
+            {/* 10th Card: End-of-track Explore Action */}
+            <div className="function-horizontal-card function-end-cta-card">
+              <div className="end-cta-inner">
+                <span className="section-tag">Complete Suite</span>
+                <h3 className="end-cta-title">Explore All Integrated Solutions</h3>
+                <p className="end-cta-desc">
+                  Discover how all 9 operational modules harmonize across a unified architectural core.
+                </p>
+                <button
+                  type="button"
+                  className="btn-cinematic-primary"
+                  onClick={() => onNavigate('solutions')}
+                >
+                  <span>Explore All Solutions</span>
+                  <ArrowRight size={17} className="btn-icon" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -633,7 +681,7 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ====================================================================
-          SCENE 6: DESIGNED FOR YOUR INDUSTRY & FINAL DEMO
+          SCENE 6: DESIGNED FOR YOUR INDUSTRY
           ==================================================================== */}
       <section className="home-section section-alt industries-kinetic-section">
         <div className="container">
@@ -676,7 +724,9 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* FINAL EXECUTIVE STAGE: READY TO BRING YOUR BUSINESS TOGETHER? */}
+      {/* ====================================================================
+          FINAL EXECUTIVE STAGE: READY TO BRING YOUR BUSINESS TOGETHER?
+          ==================================================================== */}
       <section className="home-final-portal-section">
         <div className="container">
           <div className="final-portal-card">

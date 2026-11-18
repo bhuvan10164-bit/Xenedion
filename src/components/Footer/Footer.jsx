@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
+import logoImg from '../../assets/xenedion-logo.png';
 import './Footer.css';
 
 export default function Footer({ onNavigate }) {
@@ -46,7 +47,7 @@ export default function Footer({ onNavigate }) {
           <div className="footer-brand-summary">
             <div className="footer-logo-wrapper">
               <img
-                src="/assets/xenedion-logo.png"
+                src={logoImg || "/assets/xenedion-logo.png"}
                 alt="XENedion Logo"
                 className="footer-brand-logo"
                 width="190"
@@ -148,4 +149,3 @@ export default function Footer({ onNavigate }) {
     </footer>
   );
 }
-
