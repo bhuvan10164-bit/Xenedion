@@ -24,6 +24,7 @@
   font-size: clamp(1.1rem, 1.3vw + 0.3rem, 1.25rem);
   color: var(--color-text-secondary);
   margin-top: 1.25rem;
+  margin-bottom: 0;
 }
 
 /* Tabs Nav */
@@ -32,6 +33,7 @@
   flex-wrap: wrap;
   gap: 0.65rem;
   justify-content: center;
+  margin-top: 3rem;
   margin-bottom: 3.5rem;
 }
 
