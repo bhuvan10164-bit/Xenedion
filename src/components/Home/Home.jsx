@@ -616,6 +616,9 @@ export default function Home({ onNavigate }) {
                 <p className="showcase-prose-text">
                   From managing customer relationships and sales orders to procurement, inventory, warehousing, finance and human resources, XEN helps bring your business processes together.
                 </p>
+                <p className="showcase-prose-text">
+                  Instead of managing individual departments in isolation, you can manage your business as one connected organization.
+                </p>
                 <div className="showcase-resolution-callout">
                   <p className="resolution-highlight-text">
                     The real challenge isn't the number of applications you use. It's the lack of connection between them.
@@ -778,6 +781,16 @@ export default function Home({ onNavigate }) {
                     <span className="chip-text">{benefit}</span>
                   </div>
                 ))}
+              </div>
+              <div style={{ marginTop: '1.75rem', display: 'flex', justifyContent: 'center' }}>
+                <button
+                  type="button"
+                  className="btn-pill-primary"
+                  onClick={() => onNavigate('about')}
+                >
+                  <span>Discover XENedion</span>
+                  <ArrowRight size={16} />
+                </button>
               </div>
             </div>
           </div>
