@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, ArrowRight } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import logoImg from '../../assets/xenedion-logo.png';
 import './Footer.css';
 
@@ -8,18 +8,20 @@ export default function Footer({ onNavigate }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // PDF 1 Page 5: Solutions (9 items)
   const solutionsLinks = [
-    'CRM & Sales',
+    'CRM & Sales Management',
     'Order Management',
-    'Procurement',
-    'Inventory',
-    'Warehouse',
+    'Procurement & Vendor Management',
+    'Inventory Management',
+    'Warehouse Management',
     'Finance & Accounts',
-    'HR',
-    'Logistics',
-    'Reporting'
+    'Human Resource Management',
+    'Logistics Management',
+    'Business Intelligence & Reporting'
   ];
 
+  // PDF 1 Page 5: Industries (5 items)
   const industriesLinks = [
     'Retail',
     'Distribution',
@@ -28,11 +30,12 @@ export default function Footer({ onNavigate }) {
     'Automotive'
   ];
 
+  // PDF 1 Page 5: Company (5 items)
   const companyLinks = [
-    { label: 'About XENedion', target: 'about' },
-    { label: 'Why XENedion', target: 'about' },
-    { label: 'Partner Program', target: 'partners' },
-    { label: 'Resources', target: 'resources' },
+    { label: 'About Us', target: 'about' },
+    { label: 'Solutions', target: 'solutions' },
+    { label: 'Industries', target: 'industries' },
+    { label: 'Partners', target: 'partners' },
     { label: 'Contact Us', target: 'contact' }
   ];
 
@@ -41,31 +44,10 @@ export default function Footer({ onNavigate }) {
       {/* Top Multi-color Ribbon Bar */}
       <div className="footer-ribbon-bar" />
 
-      {/* Top Video-Inspired Prompt Row (matching 00:19 - 00:20 in video) */}
-      <div className="footer-top-prompt-banner">
-        <div className="container footer-prompt-flex">
-          <div className="footer-prompt-text-group">
-            <h3 className="footer-prompt-title">Let's talk! Have a project for us!</h3>
-            <p className="footer-prompt-sub">Ready to unify your business operations with XENedion.</p>
-          </div>
-          <button
-            type="button"
-            className="footer-prompt-pill-btn"
-            onClick={() => {
-              onNavigate('contact');
-              scrollToTop();
-            }}
-          >
-            <span>Request a Demo</span>
-            <ArrowRight size={15} />
-          </button>
-        </div>
-      </div>
-
       <div className="container footer-main-container">
         {/* Main Footer Columns Grid */}
         <div className="footer-columns-grid">
-          {/* Brand Identity & Visual Card (matching 00:20 in video) */}
+          {/* Brand Identity & Tagline */}
           <div className="footer-brand-summary">
             <div className="footer-logo-wrapper">
               <img
@@ -76,100 +58,83 @@ export default function Footer({ onNavigate }) {
                 height="48"
               />
             </div>
-            <h4 className="footer-brand-tagline">Intelligent Connected Business.</h4>
+            <h4 className="footer-brand-tagline">Intelligent Connected Business</h4>
             <p className="footer-brand-desc">
-              An integrated Enterprise Resource Planning platform designed to connect business processes, simplify operations and improve organizational visibility.
+              A unified enterprise resource planning platform designed to connect people, processes, and operational data into one intelligent ecosystem.
             </p>
-
-            <div className="footer-office-preview-card">
-              <img
-                src="/assets/images/connected-operations.jpg"
-                alt="XENedion Enterprise Operations"
-                className="footer-office-preview-img"
-              />
-              <div className="footer-office-caption">
-                <span>Unified Enterprise Ecosystem</span>
-              </div>
-            </div>
           </div>
 
-          {/* Monumental Wordmark & Navigation Group */}
-          <div className="footer-nav-and-wordmark">
-            <div className="footer-monumental-wordmark" aria-hidden="true">
-              XENedion
+          {/* Navigation Links Columns */}
+          <div className="footer-links-tri-column">
+            {/* Solutions Column */}
+            <div className="footer-nav-col">
+              <h4 className="footer-col-title">Solutions</h4>
+              <ul className="footer-link-list">
+                {solutionsLinks.map((sol) => (
+                  <li key={sol}>
+                    <button
+                      type="button"
+                      className="footer-link-btn"
+                      onClick={() => {
+                        onNavigate('solutions');
+                        scrollToTop();
+                      }}
+                    >
+                      {sol}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="footer-links-tri-column">
-              {/* Solutions Column */}
-              <div className="footer-nav-col">
-                <h4 className="footer-col-title">Solutions</h4>
-                <ul className="footer-link-list">
-                  {solutionsLinks.map((sol) => (
-                    <li key={sol}>
-                      <button
-                        type="button"
-                        className="footer-link-btn"
-                        onClick={() => {
-                          onNavigate('solutions');
-                          scrollToTop();
-                        }}
-                      >
-                        {sol}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {/* Industries Column */}
+            <div className="footer-nav-col">
+              <h4 className="footer-col-title">Industries</h4>
+              <ul className="footer-link-list">
+                {industriesLinks.map((ind) => (
+                  <li key={ind}>
+                    <button
+                      type="button"
+                      className="footer-link-btn"
+                      onClick={() => {
+                        onNavigate('industries');
+                        scrollToTop();
+                      }}
+                    >
+                      {ind}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              {/* Industries Column */}
-              <div className="footer-nav-col">
-                <h4 className="footer-col-title">Industries</h4>
-                <ul className="footer-link-list">
-                  {industriesLinks.map((ind) => (
-                    <li key={ind}>
-                      <button
-                        type="button"
-                        className="footer-link-btn"
-                        onClick={() => {
-                          onNavigate('industries');
-                          scrollToTop();
-                        }}
-                      >
-                        {ind}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Company Column */}
-              <div className="footer-nav-col">
-                <h4 className="footer-col-title">Company</h4>
-                <ul className="footer-link-list">
-                  {companyLinks.map((comp) => (
-                    <li key={comp.label}>
-                      <button
-                        type="button"
-                        className="footer-link-btn"
-                        onClick={() => {
-                          onNavigate(comp.target);
-                          scrollToTop();
-                        }}
-                      >
-                        {comp.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {/* Company Column */}
+            <div className="footer-nav-col">
+              <h4 className="footer-col-title">Company</h4>
+              <ul className="footer-link-list">
+                {companyLinks.map((comp) => (
+                  <li key={comp.label}>
+                    <button
+                      type="button"
+                      className="footer-link-btn"
+                      onClick={() => {
+                        onNavigate(comp.target);
+                        scrollToTop();
+                      }}
+                    >
+                      {comp.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
 
-        {/* Footer Sub-bar */}
+        {/* Footer Bottom Strip */}
         <div className="footer-bottom-bar">
-          <div className="footer-copyright-wrap">
-            <p className="footer-powered-by">
+          <div className="footer-bottom-left">
+            <p className="footer-copyright-text">
               Powered by Astrion Digital Private Limited
             </p>
             <p className="footer-copyright-text">
@@ -179,12 +144,12 @@ export default function Footer({ onNavigate }) {
 
           <button
             type="button"
-            className="footer-back-to-top"
+            className="footer-back-to-top-btn"
             onClick={scrollToTop}
             aria-label="Back to top"
           >
             <span>Back to top</span>
-            <ArrowUp size={15} />
+            <ArrowUp size={16} />
           </button>
         </div>
       </div>

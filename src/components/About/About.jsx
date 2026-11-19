@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Sparkles,
-  GitMerge,
-  Workflow,
-  BarChart3,
-  Sliders,
+  CheckCircle,
   Compass,
-  GitBranch,
+  GitMerge,
   ShieldCheck,
   TrendingUp,
   ArrowRight
@@ -18,7 +15,6 @@ import './About.css';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About({ onNavigate }) {
-  const [activeStage, setActiveStage] = useState(0);
   const aboutContainerRef = useRef(null);
 
   useEffect(() => {
@@ -26,49 +22,49 @@ export default function About({ onNavigate }) {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero Entrance
+      // Hero Entrance
       gsap.fromTo(
         '.about-header-block',
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
       );
 
       gsap.fromTo(
         '.about-split-layout',
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: 'power3.out' }
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, delay: 0.15, ease: 'power3.out' }
       );
 
-      // 2. Principles Cards Stagger
+      // Beliefs Cards Stagger
       gsap.fromTo(
-        '.about-principle-card',
-        { y: 40, opacity: 0 },
+        '.about-belief-card',
+        { y: 35, opacity: 0 },
         {
           scrollTrigger: {
-            trigger: '.about-principles-grid',
+            trigger: '.about-beliefs-grid',
             start: 'top 80%',
           },
           y: 0,
           opacity: 1,
           stagger: 0.1,
-          duration: 0.8,
+          duration: 0.7,
           ease: 'power2.out',
         }
       );
 
-      // 3. Approach Timeline Cards Stagger
+      // Approach Timeline Cards Stagger
       gsap.fromTo(
-        '.approach-timeline-card',
-        { y: 40, opacity: 0 },
+        '.approach-stage-card',
+        { y: 35, opacity: 0 },
         {
           scrollTrigger: {
-            trigger: '.about-stages-timeline',
+            trigger: '.about-approach-grid',
             start: 'top 80%',
           },
           y: 0,
           opacity: 1,
           stagger: 0.12,
-          duration: 0.8,
+          duration: 0.75,
           ease: 'power2.out',
         }
       );
@@ -77,82 +73,53 @@ export default function About({ onNavigate }) {
     return () => ctx.revert();
   }, []);
 
-  const principles = [
+  // PDF 2: We believe that enterprise technology should:
+  const beliefsList = [
+    'Adapt to practical business workflows, not force unnatural processes',
+    'Provide absolute clarity across every operational stage',
+    'Enable teams to collaborate effortlessly without communication barriers',
+    'Give executives real-time access to accurate operational data',
+    'Scale reliably as organizations expand into new markets and operations'
+  ];
+
+  // PDF 2: Our Approach: Understand. Connect. Control. Improve.
+  const approachStages = [
     {
       num: '01',
-      title: 'Simplify, rather than complicate, business operations.',
-      desc: 'Eliminate needless friction and streamline complex administrative overhead across functions.',
-      icon: Sparkles,
-      color: 'var(--color-electric-blue)'
+      title: 'Understand the Business',
+      desc: 'We begin by understanding your operational workflows, industry challenges, and strategic goals.',
+      icon: Compass
     },
     {
       num: '02',
-      title: 'Connect information rather than create silos.',
-      desc: 'Unite operational data into a shared single source of truth across all business units.',
-      icon: GitMerge,
-      color: 'var(--color-cyan)'
+      title: 'Connect the Processes',
+      desc: 'We unify your core departments—ensuring data flows seamlessly across procurement, inventory, production, sales, and finance.',
+      icon: GitMerge
     },
     {
       num: '03',
-      title: 'Improve processes rather than simply digitise existing inefficiencies.',
-      desc: 'Transform and optimize end-to-end workflows rather than automating broken manual procedures.',
-      icon: Workflow,
-      color: 'var(--color-orange)'
+      title: 'Establish Operational Control',
+      desc: 'We implement structured workflows, approval mechanisms, and real-time tracking to ensure operational consistency and accountability.',
+      icon: ShieldCheck
     },
     {
       num: '04',
-      title: 'Support management decisions with meaningful information.',
-      desc: 'Deliver real-time consolidated visibility so leadership acts with speed, clarity, and precision.',
-      icon: BarChart3,
-      color: 'var(--color-purple)'
-    },
-    {
-      num: '05',
-      title: 'Adapt to changing business requirements.',
-      desc: 'Architected to scale seamlessly as new products, facilities, suppliers, and markets evolve.',
-      icon: Sliders,
-      color: 'var(--color-primary-navy)'
-    }
-  ];
-
-  const approachStages = [
-    {
-      step: '01',
-      title: 'Understand the Business',
-      desc: "Understand the organization's business model, operational requirements and process challenges.",
-      icon: Compass,
-      tag: 'Stage 1 — Discovery'
-    },
-    {
-      step: '02',
-      title: 'Connect the Processes',
-      desc: 'Bring different departments and business functions together through integrated workflows.',
-      icon: GitBranch,
-      tag: 'Stage 2 — Integration'
-    },
-    {
-      step: '03',
-      title: 'Establish Operational Control',
-      desc: 'Create structured processes and improve visibility across business activities.',
-      icon: ShieldCheck,
-      tag: 'Stage 3 — Governance'
-    },
-    {
-      step: '04',
       title: 'Enable Continuous Improvement',
-      desc: 'Use business information and operational insights to identify opportunities for improvement.',
-      icon: TrendingUp,
-      tag: 'Stage 4 — Evolution'
+      desc: 'With centralized data and actionable analytics, leadership teams can continuously identify opportunities to optimize operations and drive profitability.',
+      icon: TrendingUp
     }
   ];
 
   return (
     <div className="about-page-view" ref={aboutContainerRef}>
-      {/* 1. ABOUT XENEDION MAIN */}
+      {/* ====================================================================
+          1. ABOUT XENEDION MAIN
+          (PDF 2)
+          ==================================================================== */}
       <section className="about-hero-editorial">
         <div className="container">
           <div className="about-header-block">
-            <span className="section-tag">ABOUT XENEDION</span>
+            <span className="section-tag">About XENedion</span>
             <h1 className="about-hero-title">
               Enterprise Technology Designed Around the Way Businesses Work
             </h1>
@@ -162,27 +129,20 @@ export default function About({ onNavigate }) {
           <div className="about-split-layout">
             <div className="about-editorial-text">
               <p className="about-lead-paragraph">
-                Businesses today operate in an increasingly connected and competitive environment. Managing customers, suppliers, inventory, finances and people requires coordination across multiple functions. Yet many organizations continue to depend on disconnected systems and manual processes to manage their everyday operations.
+                At XENedion, we believe that modern businesses should not be constrained by disconnected systems, rigid enterprise software, or fragmented data.
               </p>
-
-              <div className="about-architectural-callout">
-                <div className="about-callout-glow-bar" />
-                <p className="about-highlight-title">
-                  XENedion was conceived to address this challenge.
-                </p>
-                <p className="about-highlight-desc">
-                  It is an integrated Enterprise Resource Planning platform designed to bring essential business processes together within a unified system.
-                </p>
-              </div>
-
-              <div className="about-body-copy">
-                <p>
-                  Our objective is to simplify business management by connecting information, streamlining workflows and providing organizations with greater operational visibility.
-                </p>
-                <p className="about-body-conclusion">
-                  XENedion brings together business process understanding and enterprise technology to help organizations operate more efficiently and manage growth with greater confidence.
-                </p>
-              </div>
+              <p className="about-prose-text">
+                XENedion was developed with a clear mission: to provide growing and established enterprises with a unified, intuitive, and reliable platform that simplifies business operations and brings clarity to everyday decision-making.
+              </p>
+              <p className="about-prose-text">
+                Too often, organizations are forced to choose between complex, overpriced legacy ERP systems that take years to implement, or disconnected point solutions that create operational silos.
+              </p>
+              <p className="about-prose-text">
+                XENedion bridges this gap by delivering a comprehensive enterprise management platform that combines robust functionality with real-world usability.
+              </p>
+              <p className="about-prose-text about-highlight-conclusion">
+                Our platform brings together sales, procurement, inventory, manufacturing, finance, logistics, and human resources into a single connected ecosystem—empowering teams to collaborate seamlessly and enabling leadership to lead with confidence.
+              </p>
             </div>
 
             <div className="about-visual-column">
@@ -201,7 +161,7 @@ export default function About({ onNavigate }) {
                 <div className="about-caption-card">
                   <div className="caption-accent-pip" />
                   <p className="about-caption-quote">
-                    "Connecting information, streamlining workflows and providing organizations with greater operational visibility."
+                    "Connecting people, processes, and operational data into one intelligent ecosystem."
                   </p>
                 </div>
               </div>
@@ -210,104 +170,89 @@ export default function About({ onNavigate }) {
         </div>
       </section>
 
-      {/* 2. WHY XENEDION? BECAUSE EVERY PART OF YOUR BUSINESS MATTERS */}
-      <section className="about-section section-alt about-why-matters-section">
+      {/* ====================================================================
+          2. WHY XENEDION? BECAUSE EVERY PART OF YOUR BUSINESS MATTERS
+          (PDF 2)
+          ==================================================================== */}
+      <section className="about-why-matters-section">
         <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered why-matters-header">
             <span className="section-tag">Why XENedion?</span>
             <h2 className="section-title">
               Because Every Part of Your Business Matters.
             </h2>
             <div className="ribbon-gradient-bar ribbon-gradient-bar-center" />
             <p className="about-why-narrative">
-              A business doesn't operate as a collection of independent departments. Sales influence inventory. Procurement affects availability. Inventory impacts fulfillment. Every transaction has operational and financial implications. When these functions operate independently, businesses lose valuable visibility and coordination.
+              Every business is an interconnected network of people, decisions, and processes. A delay in procurement affects production; a mistake in inventory impacts sales; disconnected financial records distort business intelligence.
             </p>
-            <div className="about-connects-badge">
-              <span className="connects-dot" />
-              <span>XENedion connects these functions to create a more integrated business environment.</span>
-            </div>
+            <p className="about-why-narrative-sub">
+              When these functions operate in isolation, organizations experience inefficiencies that slow growth and erode margins.
+            </p>
           </div>
 
-          <div className="about-principles-container">
-            <h3 className="principles-lead-header">
+          <div className="about-beliefs-wrapper">
+            <h3 className="beliefs-lead-header">
               We believe that enterprise technology should:
             </h3>
 
-            <div className="about-principles-grid">
-              {principles.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.num} className="about-principle-card">
-                    <div className="principle-card-top">
-                      <span className="principle-num-badge">{item.num}</span>
-                      <div
-                        className="principle-icon-box"
-                        style={{ color: item.color }}
-                      >
-                        <Icon size={22} />
-                      </div>
-                    </div>
-                    <h4 className="principle-card-title">{item.title}</h4>
-                    <p className="principle-card-desc">{item.desc}</p>
-                    <div
-                      className="principle-bottom-bar"
-                      style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
-                    />
+            <div className="about-beliefs-grid">
+              {beliefsList.map((belief, idx) => (
+                <div key={idx} className="about-belief-card">
+                  <div className="belief-check-frame">
+                    <CheckCircle size={20} className="belief-check-icon" />
                   </div>
-                );
-              })}
+                  <p className="belief-text">{belief}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. OUR APPROACH */}
-      <section className="about-section about-approach-section">
+      {/* ====================================================================
+          3. OUR APPROACH: UNDERSTAND. CONNECT. CONTROL. IMPROVE.
+          (PDF 2)
+          ==================================================================== */}
+      <section className="about-approach-section">
         <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered approach-header-block">
             <span className="section-tag">Our Approach</span>
             <h2 className="section-title">
               Understand. Connect. Control. Improve.
             </h2>
             <div className="ribbon-gradient-bar ribbon-gradient-bar-center" />
-            <p className="approach-intro-copy">
-              We recognize that every business has its own operating processes and management requirements. Our approach focuses on understanding these requirements and aligning the ERP platform with the way the business operates.
+            <p className="about-approach-lead">
+              Implementing an enterprise system is not just about technology—it is about improving how an organization operates. Our approach is grounded in four fundamental principles:
             </p>
           </div>
 
-          {/* Interactive Process Stages */}
-          <div className="about-stages-timeline">
-            {approachStages.map((stage, idx) => {
+          <div className="about-approach-grid">
+            {approachStages.map((stage) => {
               const Icon = stage.icon;
-              const isSelected = activeStage === idx;
               return (
-                <div
-                  key={stage.step}
-                  className={`approach-timeline-card ${isSelected ? 'timeline-card-active' : ''}`}
-                  onClick={() => setActiveStage(idx)}
-                >
-                  <div className="timeline-node-circle">
-                    <Icon size={24} />
-                    <span className="node-step-label">{stage.step}</span>
+                <div key={stage.num} className="approach-stage-card">
+                  <div className="stage-card-top">
+                    <span className="stage-num-badge">{stage.num}</span>
+                    <div className="stage-icon-bubble">
+                      <Icon size={22} />
+                    </div>
                   </div>
-                  <div className="timeline-card-content">
-                    <span className="timeline-stage-tag">{stage.tag}</span>
-                    <h3 className="timeline-stage-title">{stage.title}</h3>
-                    <p className="timeline-stage-desc">{stage.desc}</p>
-                  </div>
+                  <h3 className="stage-card-title">{stage.title}</h3>
+                  <p className="stage-card-desc">{stage.desc}</p>
                 </div>
               );
             })}
           </div>
 
-          <div className="about-approach-footer-cta">
+          <div className="about-cta-banner">
+            <h3 className="cta-banner-title">Ready to bring clarity and control to your operations?</h3>
             <button
               type="button"
-              className="btn-primary"
+              className="btn-pill-primary"
               onClick={() => onNavigate('contact')}
             >
-              <span>Speak with Our Implementation Specialists</span>
-              <ArrowRight size={17} className="btn-icon" />
+              <span>Schedule a Consultation</span>
+              <ArrowRight size={16} />
             </button>
           </div>
         </div>

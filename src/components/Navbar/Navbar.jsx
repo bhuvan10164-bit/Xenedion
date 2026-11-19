@@ -45,42 +45,44 @@ export default function Navbar({ activePage, setActivePage }) {
   };
 
   return (
-    <header className={`navbar-floating-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
-      <div className="navbar-floating-island">
-        {/* Brand Logo Dock */}
+    <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
+      <div className="container navbar-container">
+        {/* Brand Logo with Clean Architectural Presentation */}
         <a
           href="#home"
-          className="navbar-brand-dock"
+          className="navbar-brand"
           onClick={(e) => {
             e.preventDefault();
             handleNavClick('home');
           }}
           aria-label="XENedion Home"
         >
-          <img
-            src={logoImg || "/assets/xenedion-logo.png"}
-            alt="XENedion — Integrated Enterprise Resource Planning"
-            className="navbar-logo-img"
-            width="168"
-            height="36"
-          />
+          <div className="navbar-logo-badge">
+            <img
+              src={logoImg || "/assets/xenedion-logo.png"}
+              alt="XENedion — Integrated Enterprise Resource Planning"
+              className="navbar-logo-img"
+              width="180"
+              height="40"
+            />
+          </div>
         </a>
 
-        {/* Center Floating Capsule Dock */}
-        <nav className="navbar-capsule-nav" aria-label="Main Navigation">
-          <ul className="navbar-capsule-list">
+        {/* Desktop Navigation Links — Editorial Precision */}
+        <nav className="navbar-desktop-nav" aria-label="Main Navigation">
+          <ul className="navbar-nav-list">
             {navItems.map((item) => {
               const isActive = activePage === item.id;
               return (
-                <li key={item.id} className="navbar-capsule-item">
+                <li key={item.id} className="navbar-nav-item">
                   <button
                     type="button"
-                    className={`navbar-capsule-link ${isActive ? 'navbar-capsule-link-active' : ''}`}
+                    className={`navbar-nav-link ${isActive ? 'navbar-nav-link-active' : ''}`}
                     onClick={() => handleNavClick(item.id)}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    {isActive && <span className="capsule-active-indicator" aria-hidden="true" />}
-                    <span className="capsule-link-text">{item.label}</span>
+                    <span className="nav-link-text">{item.label}</span>
+                    {isActive && <span className="nav-link-active-bar" />}
                   </button>
                 </li>
               );
@@ -88,14 +90,14 @@ export default function Navbar({ activePage, setActivePage }) {
           </ul>
         </nav>
 
-        {/* Action Button: Request a Demo */}
-        <div className="navbar-action-dock">
+        {/* Desktop Distinctive Action: Request a Demo */}
+        <div className="navbar-action-desktop">
           <button
             type="button"
-            className="navbar-action-btn"
+            className="navbar-demo-btn"
             onClick={() => handleNavClick('contact')}
           >
-            <span className="btn-shimmer-effect" aria-hidden="true" />
+            <span className="demo-btn-shimmer" aria-hidden="true" />
             <Sparkles size={14} className="demo-btn-sparkle" />
             <span className="demo-btn-label">Request a Demo</span>
             <ArrowRight size={14} className="demo-btn-arrow" />
@@ -123,7 +125,7 @@ export default function Navbar({ activePage, setActivePage }) {
       >
         <div className="mobile-drawer-inner">
           <div className="mobile-drawer-header">
-            <div className="mobile-brand-wrapper">
+            <div className="navbar-logo-badge">
               <img
                 src={logoImg || "/assets/xenedion-logo.png"}
                 alt="XENedion Logo"
@@ -167,7 +169,7 @@ export default function Navbar({ activePage, setActivePage }) {
           <div className="mobile-drawer-footer">
             <button
               type="button"
-              className="navbar-action-btn mobile-demo-btn"
+              className="navbar-demo-btn mobile-demo-btn"
               onClick={() => handleNavClick('contact')}
             >
               <Sparkles size={15} />

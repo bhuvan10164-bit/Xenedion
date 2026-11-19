@@ -18,14 +18,14 @@ import {
   Scissors,
   Car,
   ChevronRight,
-  Play,
-  Compass,
-  GitMerge,
-  Sliders,
-  RefreshCw,
-  Clock,
+  Users,
   FileText,
-  CheckSquare
+  Package,
+  Boxes,
+  Warehouse,
+  Coins,
+  Compass,
+  GitMerge
 } from 'lucide-react';
 import './Home.css';
 
@@ -35,93 +35,172 @@ export default function Home({ onNavigate }) {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
   const centerpieceRef = useRef(null);
-  const [activeFunctionTab, setActiveFunctionTab] = useState('all');
 
+  // 1. The Business Challenge Consequence Bullets (PDF 1 Page 1)
   const challengeConsequences = [
-    'Disconnected systems and fragmented information.',
-    'Repetitive data entry and manual processes.',
-    'Limited visibility across departments.',
-    'Delays in accessing critical business information.',
-    'Inventory discrepancies and operational inefficiencies.',
-    'Difficulty maintaining control as the business grows.'
+    'Disconnected communication between sales, inventory, and finance teams',
+    'Lack of real-time visibility into inventory levels, orders, and cash flow',
+    'Manual data entry leading to errors, duplicate effort, and operational delays',
+    'Inefficient procurement and supply chain coordination',
+    'Fragmented reporting that makes strategic decision-making difficult',
+    'Difficulty scaling operations without adding significant administrative overhead'
   ];
 
-  const xenBenefits = [
-    'Connect business functions through integrated workflows.',
-    'Improve coordination between departments.',
-    'Reduce repetitive manual activities.',
-    'Maintain better control over business processes.',
-    'Access consolidated operational information.',
-    'Make informed decisions with greater visibility.'
+  // 2. Introducing XENedion Capabilities (PDF 1 Page 1)
+  const xenCapabilities = [
+    'Connect day-to-day operations across every department',
+    'Automate routine business processes to reduce manual effort',
+    'Gain real-time visibility across inventory, sales, and financial performance',
+    'Maintain full traceability across procurement, production, and order fulfillment',
+    'Make informed decisions with centralized operational reporting',
+    'Scale your business operations with confidence'
   ];
 
-  const previewFunctions = [
-    { num: '01', title: 'CRM & Sales Management', desc: 'Build stronger customer relationships and manage your sales activities, opportunities, quotations and orders.', category: 'sales' },
-    { num: '02', title: 'Order Management', desc: 'Manage the complete order process, from order creation through processing and fulfillment.', category: 'operations' },
-    { num: '03', title: 'Procurement & Vendor Management', desc: 'Organize supplier relationships, purchasing activities, purchase orders and goods receipts.', category: 'supply' },
-    { num: '04', title: 'Inventory Management', desc: 'Maintain visibility into stock positions, movements and inventory transactions.', category: 'operations' },
-    { num: '05', title: 'Warehouse Management', desc: 'Bring greater structure and control to warehouse operations, stock handling and goods movement.', category: 'operations' },
-    { num: '06', title: 'Finance & Accounts', desc: 'Connect financial transactions with business operations and improve financial visibility.', category: 'finance' },
-    { num: '07', title: 'Human Resource Management', desc: 'Organize employee information and support structured human resource administration.', category: 'corporate' },
-    { num: '08', title: 'Logistics Management', desc: 'Coordinate logistics-related activities and improve operational communication.', category: 'supply' },
-    { num: '09', title: 'Business Intelligence & Reporting', desc: 'Bring business information together to support monitoring, analysis and management decisions.', category: 'finance' }
-  ];
-
-  const whyPoints = [
-    { num: '01', title: 'Integrated Business Management', desc: 'Bring multiple business functions together rather than managing them through isolated applications.', icon: Layers, color: 'var(--color-electric-blue)' },
-    { num: '02', title: 'Greater Operational Control', desc: 'Establish structured processes, improve coordination and maintain better oversight of business activities.', icon: ShieldCheck, color: 'var(--color-cyan)' },
-    { num: '03', title: 'Business-Wide Visibility', desc: 'Access relevant information across departments to understand what is happening throughout your organization.', icon: BarChart3, color: 'var(--color-purple)' },
-    { num: '04', title: 'Improved Productivity', desc: 'Reduce repetitive work, streamline activities and help your teams focus on more valuable tasks.', icon: Zap, color: 'var(--color-orange)' },
-    { num: '05', title: 'Better Decision-Making', desc: 'Make business decisions with a more connected view of operational information.', icon: TrendingUp, color: 'var(--color-electric-blue)' },
-    { num: '06', title: 'Built to Support Growth', desc: 'Create an integrated technology foundation that can support your organization as its requirements evolve.', icon: Cpu, color: 'var(--color-cyan)' }
-  ];
-
-  const industriesList = [
-    { id: 'retail', name: 'Retail', icon: ShoppingBag, detail: 'Omnichannel sales, point-of-sale integration, and real-time inventory synchronization.' },
-    { id: 'distribution', name: 'Distribution', icon: Truck, detail: 'Multi-location dispatch, warehouse replenishment, and optimized route fulfillment.' },
-    { id: 'manufacturing', name: 'Manufacturing', icon: Factory, detail: 'Bill of materials, production scheduling, shop floor coordination, and quality control.' },
-    { id: 'garments', name: 'Garments', icon: Scissors, detail: 'Size/color matrices, style life cycles, textile procurement, and export packaging.' },
-    { id: 'automotive', name: 'Automotive', icon: Car, detail: 'Serialized parts tracking, warranty records, assembly schedules, and dealership logistics.' }
-  ];
-
-  const approachSteps = [
+  // 3. One Platform. Multiple Business Functions (PDF 1 Page 2)
+  const businessFunctions = [
     {
-      stage: 'Stage 1 — Discovery',
-      title: 'Understand the Business',
-      desc: "Understand the organization's business model, operational requirements and process challenges.",
-      icon: Compass
+      num: '01',
+      title: 'CRM & Sales Management',
+      desc: 'Build stronger customer relationships, track sales pipelines, and convert opportunities into revenue.',
+      icon: Users
     },
     {
-      stage: 'Stage 2 — Integration',
-      title: 'Connect the Processes',
-      desc: 'Bring different departments and business functions together through integrated workflows.',
-      icon: GitMerge
+      num: '02',
+      title: 'Order Management',
+      desc: 'Streamline order processing from quotation and confirmation through fulfillment and delivery.',
+      icon: FileText
     },
     {
-      stage: 'Stage 3 — Governance',
-      title: 'Establish Operational Control',
-      desc: 'Create structured processes and improve visibility across business activities.',
-      icon: Sliders
+      num: '03',
+      title: 'Procurement & Vendor Management',
+      desc: 'Manage vendor relationships, automate purchase requisitions, track purchase orders, and monitor supplier performance.',
+      icon: Truck
     },
     {
-      stage: 'Stage 4 — Evolution',
-      title: 'Enable Continuous Improvement',
-      desc: 'Use business information and operational insights to identify opportunities for improvement.',
-      icon: RefreshCw
+      num: '04',
+      title: 'Inventory Management',
+      desc: 'Maintain complete control over stock levels, monitor movements across locations, and minimize stockouts and excess inventory.',
+      icon: Package
+    },
+    {
+      num: '05',
+      title: 'Warehouse Management',
+      desc: 'Optimize warehouse space, streamline pick-and-pack workflows, and improve inventory accuracy.',
+      icon: Warehouse
+    },
+    {
+      num: '06',
+      title: 'Finance & Accounts',
+      desc: 'Integrate core accounting functions with operational activities for accurate bookkeeping, billing, payments, and financial reporting.',
+      icon: Coins
+    },
+    {
+      num: '07',
+      title: 'Human Resource Management',
+      desc: 'Centralize employee records, manage attendance and leave, process payroll, and support organizational administration.',
+      icon: Users
+    },
+    {
+      num: '08',
+      title: 'Logistics Management',
+      desc: 'Coordinate shipments, monitor dispatches, and ensure timely delivery across supply chain networks.',
+      icon: Truck
+    },
+    {
+      num: '09',
+      title: 'Business Intelligence & Reporting',
+      desc: 'Gain real-time insights with customizable dashboards and reports that turn operational data into strategic intelligence.',
+      icon: BarChart3
     }
   ];
 
-  const filteredFunctions = activeFunctionTab === 'all'
-    ? previewFunctions
-    : previewFunctions.filter(f => f.category === activeFunctionTab);
+  // 4. Why XENedion (PDF 1 Page 2)
+  const whyPoints = [
+    {
+      num: '01',
+      title: 'End-to-End Integration',
+      desc: 'Connect every department into a single source of truth—eliminating silos and duplicate data entry.',
+      icon: Layers,
+      color: 'var(--color-electric-blue)'
+    },
+    {
+      num: '02',
+      title: 'Real-Time Operational Visibility',
+      desc: 'Monitor sales, inventory, production, and cash flow in real time from an intuitive interface.',
+      icon: BarChart3,
+      color: 'var(--color-cyan)'
+    },
+    {
+      num: '03',
+      title: 'Designed for Usability',
+      desc: 'A clean, modern user experience that teams actually enjoy using—driving faster adoption and fewer errors.',
+      icon: Sparkles,
+      color: 'var(--color-purple)'
+    },
+    {
+      num: '04',
+      title: 'Configurable & Scalable Architecture',
+      desc: 'Adapt the system to your specific business processes without rigid constraints, and scale effortlessly as your enterprise expands.',
+      icon: Cpu,
+      color: 'var(--color-orange)'
+    },
+    {
+      num: '05',
+      title: 'Robust Security & Data Governance',
+      desc: 'Enterprise-grade access controls, audit trails, and data protection to safeguard your business-critical information.',
+      icon: ShieldCheck,
+      color: 'var(--color-electric-blue)'
+    },
+    {
+      num: '06',
+      title: 'Implementation Focused on Adoption',
+      desc: 'We prioritize smooth transitions, hands-on user training, and ongoing operational support to ensure immediate and lasting value.',
+      icon: TrendingUp,
+      color: 'var(--color-cyan)'
+    }
+  ];
 
-  // GSAP Animation setup matching the reference video (00:00 - 00:30)
+  // 5. Designed for Your Industry (PDF 1 Page 3)
+  const industriesList = [
+    {
+      id: 'retail',
+      name: 'Retail',
+      icon: ShoppingBag,
+      detail: 'Omnichannel sales management, POS integration, dynamic inventory replenishment, and customer loyalty tracking.'
+    },
+    {
+      id: 'distribution',
+      name: 'Distribution',
+      icon: Truck,
+      detail: 'Multi-warehouse management, bulk order processing, route logistics, and automated vendor reordering.'
+    },
+    {
+      id: 'manufacturing',
+      name: 'Manufacturing',
+      icon: Factory,
+      detail: 'Production planning, BOM management, shop floor scheduling, material tracking, and quality assurance.'
+    },
+    {
+      id: 'garments',
+      name: 'Garments',
+      icon: Scissors,
+      detail: 'Apparel-specific matrix management (style, size, color), fabric sourcing, cutting-to-pack workflows, and export documentation.'
+    },
+    {
+      id: 'automotive',
+      name: 'Automotive',
+      icon: Car,
+      detail: 'Spare parts inventory, serial/batch tracking, service center management, warranty tracking, and supplier integration.'
+    }
+  ];
+
+  // GSAP Animations
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Hero Load Entrance Animation (matching 00:00 of reference video)
+      // Hero Load Entrance
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       heroTl
@@ -131,16 +210,16 @@ export default function Home({ onNavigate }) {
           { y: 0, opacity: 1, duration: 0.8 }
         )
         .fromTo(
-          '.hero-headline-row',
-          { y: 45, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.15 },
+          '.hero-headline-anim',
+          { y: 35, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9 },
           '-=0.6'
         )
         .fromTo(
-          '.hero-lead-anim',
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9 },
-          '-=0.7'
+          '.hero-prose-anim',
+          { y: 25, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 },
+          '-=0.6'
         )
         .fromTo(
           '.hero-action-anim',
@@ -150,128 +229,27 @@ export default function Home({ onNavigate }) {
         )
         .fromTo(
           centerpieceRef.current,
-          { y: 60, opacity: 0, scale: 0.95 },
-          { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out' },
-          '-=0.7'
+          { y: 50, opacity: 0, scale: 0.96 },
+          { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out' },
+          '-=0.6'
         );
 
-      // 2. Responsive ScrollTrigger MatchMedia
-      const mm = gsap.matchMedia();
-
-      mm.add('(min-width: 992px)', () => {
-        // Centerpiece scaling and subtle parallax on scroll (matching 00:01 - 00:03 in video)
-        gsap.to('.hero-centerpiece-card', {
-          scrollTrigger: {
-            trigger: '.hero-reference-wrapper',
-            start: 'top top',
-            end: 'bottom center',
-            scrub: 1,
-          },
-          scale: 1.03,
-          y: -25,
-          ease: 'none',
-        });
-
-        // Stats counter row slide up (matching 00:04 in video)
+      // Scroll reveals for cards
+      gsap.utils.toArray('.reveal-card-anim').forEach((card) => {
         gsap.fromTo(
-          '.stats-reveal-anim',
-          { y: 50, opacity: 0 },
+          card,
+          { y: 35, opacity: 0 },
           {
             scrollTrigger: {
-              trigger: '.credibility-stats-section',
-              start: 'top 80%',
+              trigger: card,
+              start: 'top 85%',
             },
             y: 0,
             opacity: 1,
-            stagger: 0.14,
-            duration: 0.85,
-            ease: 'power3.out',
+            duration: 0.7,
+            ease: 'power2.out'
           }
         );
-
-        // 2x2 Services Grid Stagger (matching 00:07 - 00:08 in video)
-        gsap.fromTo(
-          '.capability-video-card',
-          { y: 45, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: '.capabilities-video-section',
-              start: 'top 75%',
-            },
-            y: 0,
-            opacity: 1,
-            stagger: 0.12,
-            duration: 0.8,
-            ease: 'power2.out',
-          }
-        );
-
-        // Case Studies Showcase Stagger (matching 00:09 - 00:10 in video)
-        gsap.fromTo(
-          '.showcase-video-card',
-          { y: 50, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: '.showcase-video-section',
-              start: 'top 75%',
-            },
-            y: 0,
-            opacity: 1,
-            stagger: 0.18,
-            duration: 0.9,
-            ease: 'power3.out',
-          }
-        );
-
-        // Methodology Timeline Steps Stagger (matching 00:12 - 00:13 in video)
-        gsap.fromTo(
-          '.timeline-step-anim',
-          { x: 30, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: '.methodology-video-section',
-              start: 'top 70%',
-            },
-            x: 0,
-            opacity: 1,
-            stagger: 0.14,
-            duration: 0.8,
-            ease: 'power3.out',
-          }
-        );
-
-        // Kinetic text banner translation on scroll (matching 00:11 in video)
-        gsap.to('.kinetic-marquee-inner', {
-          scrollTrigger: {
-            trigger: '.kinetic-banner-section',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 0.8,
-          },
-          xPercent: -15,
-          ease: 'none',
-        });
-      });
-
-      mm.add('(max-width: 991px)', () => {
-        // Mobile smooth subtle entrances
-        gsap.utils.toArray('.capability-video-card, .showcase-video-card, .timeline-step-anim, .why-editorial-card').forEach((el) => {
-          gsap.fromTo(
-            el,
-            { y: 25, opacity: 0 },
-            {
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 88%',
-                toggleActions: 'play none none none',
-              },
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: 'power2.out',
-            }
-          );
-        });
       });
     }, containerRef);
 
@@ -279,68 +257,61 @@ export default function Home({ onNavigate }) {
   }, []);
 
   return (
-    <div ref={containerRef} className="home-video-experience">
+    <div className="home-reference-page" ref={containerRef}>
       {/* ====================================================================
-          PHASE 3 / SECTION 1: VIBRANT BLUE HERO CANVAS + OVERLAPPING CENTERPIECE
-          (Direct recreation of reference video 00:00 - 00:04)
+          SECTION 1: HERO
+          (PDF 1 Page 1)
           ==================================================================== */}
       <div className="hero-reference-wrapper" ref={heroRef}>
-        <section className="hero-vibrant-canvas">
-          {/* Subtle Ambient Light Glows */}
-          <div className="hero-canvas-glow-1" aria-hidden="true" />
-          <div className="hero-canvas-glow-2" aria-hidden="true" />
-
-          <div className="container hero-canvas-container">
-            {/* Top Two-Column Asymmetrical Header (matching 00:00 - 00:02) */}
-            <div className="hero-split-header">
-              {/* Left Column: Monumental Headline */}
-              <div className="hero-split-left">
-                <div className="hero-kicker-anim hero-category-tag">
-                  <span className="kicker-pip" />
-                  <span className="kicker-text">Enterprise Resource Planning Platform</span>
-                </div>
-                <h1 className="hero-video-headline">
-                  <span className="hero-headline-row headline-row-1">Your Business.</span>
-                  <span className="hero-headline-row headline-row-2">
-                    Connected. Controlled. Informed.
-                  </span>
-                </h1>
+        <section className="hero-editorial-section">
+          <div className="container">
+            <div className="hero-header-block">
+              <div className="hero-kicker-anim hero-kicker-capsule">
+                <span className="kicker-pulse-dot" />
+                <span className="kicker-text">Integrated Enterprise Resource Planning</span>
               </div>
-
-              {/* Right Column: Lead Paragraph & CTA Pill (matching 00:00 in video) */}
-              <div className="hero-split-right">
-                <p className="hero-lead-anim hero-narrative-lead">
-                  XENedion (XEN) is an integrated ERP platform designed to simplify business operations, connect processes and give you, the business owner or the business manager, complete visibility across your organization.
+              <h1 className="hero-headline-anim hero-primary-title">
+                Enterprise Technology Designed Around the Way Businesses Work
+              </h1>
+              <div className="hero-prose-anim hero-lead-paragraphs">
+                <p className="hero-lead-text">
+                  XENedion is a modern enterprise resource planning (ERP) platform designed to unify core business processes into a single, cohesive operating system.
                 </p>
-                <div className="hero-action-anim hero-action-pills">
-                  <button
-                    type="button"
-                    className="btn-video-hero-primary"
-                    onClick={() => onNavigate('contact')}
-                  >
-                    <span>Request a Demo</span>
-                    <ArrowRight size={16} />
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-video-hero-secondary"
-                    onClick={() => onNavigate('solutions')}
-                  >
-                    <span>Explore Solutions</span>
-                  </button>
-                </div>
+                <p className="hero-sublead-text">
+                  From sales and procurement to inventory, manufacturing, finance, and human resources, XENedion eliminates operational silos, provides real-time visibility, and empowers leadership teams to make informed, data-driven decisions.
+                </p>
+                <p className="hero-sublead-text">
+                  Built with a focus on simplicity, scalability, and practical business workflows, XENedion enables organizations to streamline operations, reduce administrative complexity, and drive sustainable growth.
+                </p>
+              </div>
+              <div className="hero-action-anim hero-actions-row">
+                <button
+                  type="button"
+                  className="btn-hero-primary"
+                  onClick={() => onNavigate('contact')}
+                >
+                  <span>Request a Demo</span>
+                  <ArrowRight size={16} />
+                </button>
+                <button
+                  type="button"
+                  className="btn-hero-secondary"
+                  onClick={() => onNavigate('solutions')}
+                >
+                  <span>Explore Solutions</span>
+                </button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Centerpiece Overlapping Photograph (matching 00:00 - 00:03 in video) */}
+        {/* Centerpiece Banner Image */}
         <div className="hero-centerpiece-container container" ref={centerpieceRef}>
           <div className="hero-centerpiece-card">
             <div className="centerpiece-image-frame">
               <img
                 src="/assets/images/connected-operations.jpg"
-                alt="XENedion Connected Enterprise Operations Meeting"
+                alt="XENedion Connected Enterprise Operations"
                 className="centerpiece-img"
                 loading="eager"
               />
@@ -354,60 +325,96 @@ export default function Home({ onNavigate }) {
       </div>
 
       {/* ====================================================================
-          PHASE 4 / SECTION 2: CREDIBILITY STATEMENT & DUAL METRICS
-          (Direct recreation of reference video 00:03 - 00:05)
+          SECTION 2: THE BUSINESS CHALLENGE
+          (PDF 1 Page 1)
           ==================================================================== */}
-      <section className="credibility-stats-section">
+      <section className="business-challenge-section">
         <div className="container">
-          <div className="credibility-split-grid">
-            {/* Left Column: Bold statement, supporting text, CTA and avatar stack */}
-            <div className="credibility-narrative-col stats-reveal-anim">
-              <span className="section-tag">Enterprise Resource Planning Platform</span>
-              <h2 className="credibility-statement-heading">
-                Managing a business shouldn't mean managing multiple applications, disconnected spreadsheets and endless manual processes.
+          <div className="challenge-editorial-layout">
+            <div className="challenge-narrative-header">
+              <span className="section-tag">The Business Challenge</span>
+              <h2 className="section-title">
+                The Reality of Growing Businesses: Disconnected Systems, Fragmented Operations
               </h2>
-              <p className="credibility-statement-body">
-                XENedion brings your essential business functions together on one integrated platform, enabling your teams to work seamlessly, your processes to operate efficiently and your management to make informed decisions.
+              <div className="ribbon-gradient-bar" />
+              <p className="challenge-lead-prose">
+                As organizations grow, their business operations often become increasingly complex. Many companies rely on multiple standalone tools, spreadsheets, and manual processes to manage different departments.
               </p>
-              <div className="credibility-action-cluster">
+              <p className="challenge-subhead-prose">
+                When business processes are managed through isolated systems, organizations face significant operational challenges:
+              </p>
+            </div>
+
+            <div className="challenge-bullets-grid">
+              {challengeConsequences.map((bullet, idx) => (
+                <div key={idx} className="challenge-bullet-card reveal-card-anim">
+                  <div className="bullet-icon-col">
+                    <AlertCircle size={20} className="challenge-alert-icon" />
+                  </div>
+                  <div className="bullet-text-col">
+                    <p className="bullet-statement-text">{bullet}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="challenge-resolution-box reveal-card-anim">
+              <p className="resolution-p1">
+                When business systems do not communicate with each other, organizations lose time, productivity, and control.
+              </p>
+              <p className="resolution-p2">
+                XENedion was built to resolve this challenge by connecting every critical business function into one intuitive and powerful platform.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          SECTION 3: INTRODUCING XENEDION
+          (PDF 1 Page 1)
+          ==================================================================== */}
+      <section className="introducing-xen-section">
+        <div className="container">
+          <div className="introducing-split-grid">
+            <div className="introducing-text-col">
+              <span className="section-tag">Unified Platform</span>
+              <h2 className="section-title">
+                Introducing XENedion: A Unified Operating Platform for Modern Enterprises
+              </h2>
+              <div className="ribbon-gradient-bar" />
+              <p className="intro-body-text">
+                XENedion is an integrated business management platform that connects your people, processes, and data.
+              </p>
+              <p className="intro-body-text">
+                By bringing core business functions into a unified digital environment, XENedion allows organizations to operate with greater efficiency, clarity, and control.
+              </p>
+              <p className="intro-body-text">
+                Whether you are managing multi-location inventory, complex manufacturing processes, international supply chains, or financial operations, XENedion provides the tools and operational intelligence required to run your business effectively.
+              </p>
+              <div className="intro-cta-box">
                 <button
                   type="button"
                   className="btn-pill-primary"
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => onNavigate('about')}
                 >
-                  <span>Request a Demo</span>
+                  <span>Discover XENedion</span>
                   <ArrowRight size={16} />
                 </button>
-                <div className="credibility-trust-stack">
-                  <div className="trust-avatar-group">
-                    <span className="avatar-chip chip-1">X</span>
-                    <span className="avatar-chip chip-2">E</span>
-                    <span className="avatar-chip chip-3">N</span>
-                  </div>
-                  <div className="trust-label-group">
-                    <span className="trust-score-bold">100%</span>
-                    <span className="trust-caption">Unified Enterprise Architecture</span>
-                  </div>
-                </div>
               </div>
             </div>
 
-            {/* Right Column: High-impact stacked metric cards (matching 00:04 in video) */}
-            <div className="credibility-metrics-col stats-reveal-anim">
-              <div className="metric-video-card">
-                <div className="metric-number-display">100%</div>
-                <div className="metric-divider-line" />
-                <p className="metric-label-text">
-                  Process alignment and operational visibility across all departments.
-                </p>
-              </div>
-
-              <div className="metric-video-card">
-                <div className="metric-number-display">1</div>
-                <div className="metric-divider-line" />
-                <p className="metric-label-text">
-                  Unified platform connecting essential business management functions.
-                </p>
+            <div className="introducing-capabilities-col">
+              <div className="capabilities-vault-card reveal-card-anim">
+                <h3 className="vault-headline">With XEN, you can:</h3>
+                <ul className="vault-bullets-list">
+                  {xenCapabilities.map((item, idx) => (
+                    <li key={idx} className="vault-bullet-item">
+                      <CheckCircle size={18} className="vault-check-icon" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -415,113 +422,42 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ====================================================================
-          SECTION 3: ECOSYSTEM CAPABILITIES LOGO STRIP / MARQUEE
-          (Direct recreation of reference video 00:05 - 00:06)
+          SECTION 4: ONE PLATFORM. MULTIPLE BUSINESS FUNCTIONS.
+          (PDF 1 Page 2)
           ==================================================================== */}
-      <section className="marquee-trust-strip" aria-label="Core Architectural Standards">
-        <div className="container marquee-container">
-          <div className="marquee-label-col">
-            <span className="marquee-title-tag">CORE ARCHITECTURE</span>
-          </div>
-          <div className="marquee-scroll-track">
-            <div className="marquee-pills-row">
-              <span className="marquee-chip">• Single Source of Truth</span>
-              <span className="marquee-chip">• Integrated Workflows</span>
-              <span className="marquee-chip">• Real-Time Synchronization</span>
-              <span className="marquee-chip">• Multi-Location Coordination</span>
-              <span className="marquee-chip">• Operational Visibility</span>
-              <span className="marquee-chip">• Scalable Enterprise Architecture</span>
-              <span className="marquee-chip">• Cross-Department Governance</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 4: CORE CAPABILITIES — 2x2 NUMBERED FEATURE MATRIX
-          (Direct recreation of reference video 00:06 - 00:09)
-          ==================================================================== */}
-      <section className="capabilities-video-section">
+      <section className="functions-overview-section">
         <div className="container">
-          <div className="section-header-centered">
-            <span className="section-tag">Our Expertise</span>
+          <div className="section-header-centered functions-header-block">
+            <span className="section-tag">One Platform. Multiple Business Functions.</span>
             <h2 className="section-title">
               Everything Your Business Needs to Operate Better.
             </h2>
             <div className="ribbon-gradient-bar ribbon-gradient-bar-center" />
-            <p className="capabilities-lead-text">
+            <p className="functions-lead-text">
               XENedion brings together the essential functions required to manage your business.
             </p>
-
-            {/* Quick Filter Tabs matching modern video interaction */}
-            <div className="capabilities-filter-pills">
-              <button
-                type="button"
-                className={`cap-filter-btn ${activeFunctionTab === 'all' ? 'active' : ''}`}
-                onClick={() => setActiveFunctionTab('all')}
-              >
-                All Functions (09)
-              </button>
-              <button
-                type="button"
-                className={`cap-filter-btn ${activeFunctionTab === 'sales' ? 'active' : ''}`}
-                onClick={() => setActiveFunctionTab('sales')}
-              >
-                Sales & CRM
-              </button>
-              <button
-                type="button"
-                className={`cap-filter-btn ${activeFunctionTab === 'operations' ? 'active' : ''}`}
-                onClick={() => setActiveFunctionTab('operations')}
-              >
-                Operations & Warehouse
-              </button>
-              <button
-                type="button"
-                className={`cap-filter-btn ${activeFunctionTab === 'supply' ? 'active' : ''}`}
-                onClick={() => setActiveFunctionTab('supply')}
-              >
-                Procurement & Supply
-              </button>
-              <button
-                type="button"
-                className={`cap-filter-btn ${activeFunctionTab === 'finance' ? 'active' : ''}`}
-                onClick={() => setActiveFunctionTab('finance')}
-              >
-                Finance & BI
-              </button>
-            </div>
           </div>
 
-          {/* 2x2 / Responsive Grid Cards matching 00:07 - 00:08 in the video */}
-          <div className="capabilities-video-grid">
-            {filteredFunctions.map((func) => (
-              <div key={func.num} className="capability-video-card">
-                <div className="cap-card-top-row">
-                  <span className="cap-index-num">{func.num}</span>
-                  <div className="cap-micro-chart">
-                    <span className="chart-bar bar-1" />
-                    <span className="chart-bar bar-2" />
-                    <span className="chart-bar bar-3" />
+          {/* 3x3 Grid with generous top gap separating topic from tools/cards */}
+          <div className="functions-cards-grid">
+            {businessFunctions.map((func) => {
+              const Icon = func.icon;
+              return (
+                <div key={func.num} className="function-item-card reveal-card-anim">
+                  <div className="func-card-header">
+                    <span className="func-num-badge">{func.num}</span>
+                    <div className="func-icon-frame">
+                      <Icon size={20} />
+                    </div>
                   </div>
+                  <h3 className="func-card-title">{func.title}</h3>
+                  <p className="func-card-desc">{func.desc}</p>
                 </div>
-                <h3 className="cap-card-title">{func.title}</h3>
-                <p className="cap-card-desc">{func.desc}</p>
-                <div className="cap-card-footer">
-                  <button
-                    type="button"
-                    className="cap-action-link"
-                    onClick={() => onNavigate('solutions')}
-                  >
-                    <span>View capability details</span>
-                    <ArrowRight size={14} />
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          <div className="capabilities-cta-wrapper">
+          <div className="functions-cta-row">
             <button
               type="button"
               className="btn-pill-primary"
@@ -535,287 +471,73 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ====================================================================
-          SECTION 5: OPERATIONAL SHOWCASE & THE BUSINESS CHALLENGE
-          (Direct recreation of reference video 00:09 - 00:11)
+          SECTION 5: WHY XENEDION?
+          (PDF 1 Page 2)
           ==================================================================== */}
-      <section className="showcase-video-section">
+      <section className="why-xenedion-section">
         <div className="container">
-          <div className="showcase-section-header">
-            <div className="showcase-header-left">
-              <span className="section-tag">The Business Challenge</span>
-              <h2 className="section-title">
-                Your Business Has Evolved. Have Your Systems Kept Up?
-              </h2>
-            </div>
-            <div className="showcase-header-right">
-              <button
-                type="button"
-                className="btn-pill-outline"
-                onClick={() => onNavigate('solutions')}
-              >
-                <span>Explore Solutions</span>
-                <ArrowRight size={15} />
-              </button>
-            </div>
-          </div>
-
-          <p className="showcase-lead-prose">
-            As businesses expand, its operational complexity increases. Different departments adopt different applications, information gets scattered and business processes become increasingly difficult to coordinate.
-          </p>
-
-          {/* Two Large Visual Cards matching 00:10 in the video */}
-          <div className="showcase-dual-grid">
-            {/* Card 1: Operational Challenge */}
-            <div className="showcase-video-card">
-              <div className="showcase-card-badge-bar challenge-badge-bar">
-                <span className="showcase-badge-title">The Operational Challenge</span>
-                <span className="showcase-badge-status">Disconnected Legacy Systems</span>
-              </div>
-              <div className="showcase-card-image-wrapper">
-                <img
-                  src="/assets/images/procurement-coordination.jpg"
-                  alt="Fragmented business operations"
-                  className="showcase-card-img"
-                  loading="lazy"
-                />
-              </div>
-              <div className="showcase-card-content">
-                <span className="showcase-subtag">Operational Consequence</span>
-                <h3 className="showcase-item-title">The consequences are familiar:</h3>
-                <ul className="showcase-bullet-list">
-                  {challengeConsequences.map((item, idx) => (
-                    <li key={idx} className="showcase-bullet-item">
-                      <AlertCircle size={16} className="bullet-alert-icon" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Card 2: Connected Solution */}
-            <div className="showcase-video-card">
-              <div className="showcase-card-badge-bar solution-badge-bar">
-                <span className="showcase-badge-title">The Connected Solution</span>
-                <span className="showcase-badge-status">Unified XEN Platform</span>
-              </div>
-              <div className="showcase-card-image-wrapper">
-                <img
-                  src="/assets/images/crm-sales-analytics.jpg"
-                  alt="Connected ERP management"
-                  className="showcase-card-img"
-                  loading="lazy"
-                />
-              </div>
-              <div className="showcase-card-content">
-                <span className="showcase-subtag">Enterprise Architecture</span>
-                <h3 className="showcase-item-title">One Business. One Integrated Platform.</h3>
-                <p className="showcase-prose-text">
-                  XENedion is an integrated Enterprise Resource Planning platform that connects the different functions of your business within a common business operating environment.
-                </p>
-                <p className="showcase-prose-text">
-                  From managing customer relationships and sales orders to procurement, inventory, warehousing, finance and human resources, XEN helps bring your business processes together.
-                </p>
-                <div className="showcase-resolution-callout">
-                  <p className="resolution-highlight-text">
-                    The real challenge isn't the number of applications you use. It's the lack of connection between them.
-                  </p>
-                  <span className="resolution-signature">
-                    XEN brings your business together, seamlessly
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 6: MASSIVE KINETIC TYPOGRAPHY BANNER
-          (Direct recreation of reference video 00:11 - 00:12)
-          ==================================================================== */}
-      <section className="kinetic-banner-section" aria-hidden="true">
-        <div className="kinetic-marquee-inner">
-          <div className="kinetic-text-track">
-            <span className="kinetic-text-item">Your Business. Connected. Controlled. Informed.</span>
-            <span className="kinetic-separator">•</span>
-            <span className="kinetic-text-item">One Business. One Integrated Platform.</span>
-            <span className="kinetic-separator">•</span>
-            <span className="kinetic-text-item">Your Business. Connected. Controlled. Informed.</span>
-            <span className="kinetic-separator">•</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 7: METHODOLOGY & STEP-BY-STEP APPROACH WITH MEDIA
-          (Direct recreation of reference video 00:12 - 00:15)
-          ==================================================================== */}
-      <section className="methodology-video-section">
-        <div className="container">
-          <div className="methodology-split-layout">
-            {/* Left Column: Heading, description, CTA */}
-            <div className="methodology-header-col">
-              <span className="section-tag">Our Approach</span>
-              <h2 className="section-title">
-                Understand. Connect. Control. Improve.
-              </h2>
-              <div className="ribbon-gradient-bar" />
-              <p className="methodology-narrative-prose">
-                We recognize that every business has its own operating processes and management requirements. Our approach focuses on understanding these requirements and aligning the ERP platform with the way the business operates.
-              </p>
-              <div className="methodology-cta-box">
-                <button
-                  type="button"
-                  className="btn-pill-primary"
-                  onClick={() => onNavigate('contact')}
-                >
-                  <span>Speak with Our Implementation Specialists</span>
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
-
-            {/* Right Column: Step-by-Step Vertical Roadmap (matching 00:12 - 00:13 in video) */}
-            <div className="methodology-steps-col">
-              {approachSteps.map((step, idx) => {
-                const IconComponent = step.icon;
-                return (
-                  <div key={idx} className="timeline-step-anim methodology-step-card">
-                    <div className="step-card-indicator-col">
-                      <div className="step-icon-bubble">
-                        <IconComponent size={18} />
-                      </div>
-                      {idx < approachSteps.length - 1 && <div className="step-connector-rail" />}
-                    </div>
-                    <div className="step-card-text-col">
-                      <span className="step-stage-pill">{step.stage}</span>
-                      <h3 className="step-card-headline">{step.title}</h3>
-                      <p className="step-card-body">{step.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Centerpiece Media Card with Play Button (matching 00:14 - 00:15 in video) */}
-          <div className="methodology-media-frame">
-            <div className="media-image-wrapper">
-              <img
-                src="/assets/images/modern-manufacturing.jpg"
-                alt="XENedion Enterprise Implementation and Strategy Review"
-                className="media-img"
-                loading="lazy"
-              />
-              <div className="media-play-overlay">
-                <button
-                  type="button"
-                  className="media-play-button"
-                  aria-label="Play Overview Video"
-                  onClick={() => onNavigate('contact')}
-                >
-                  <Play size={24} className="play-icon-triangle" />
-                </button>
-                <span className="play-button-label">Explore Implementation Walkthrough</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          SECTION 8: WHY XENEDION? (CORE VALUE PILLARS)
-          (Direct recreation of reference video 00:15 - 00:17)
-          ==================================================================== */}
-      <section className="why-video-section">
-        <div className="container">
-          <div className="section-header-centered">
+          <div className="section-header-centered why-header-block">
             <span className="section-tag">Why XENedion?</span>
-            <h2 className="section-title">More Than Software.</h2>
-            <p className="section-subtitle">
-              A Better Way to Manage Your Business. It’s a businesses way of life.
-            </p>
+            <h2 className="section-title">
+              Built for Operational Control. Designed for Real-World Business.
+            </h2>
             <div className="ribbon-gradient-bar ribbon-gradient-bar-center" />
           </div>
 
-          <div className="why-video-grid">
+          <div className="why-pillars-grid">
             {whyPoints.map((pt) => {
               const Icon = pt.icon;
               return (
-                <div key={pt.num} className="why-editorial-card">
-                  <div className="why-card-top-row">
-                    <span className="why-large-index">{pt.num}</span>
-                    <div
-                      className="why-icon-bubble"
-                      style={{ color: pt.color }}
-                    >
+                <div key={pt.num} className="why-pillar-card reveal-card-anim">
+                  <div className="why-pillar-top">
+                    <span className="pillar-num">{pt.num}</span>
+                    <div className="pillar-icon-bubble" style={{ color: pt.color }}>
                       <Icon size={22} />
                     </div>
                   </div>
-                  <h3 className="why-card-title">{pt.title}</h3>
-                  <p className="why-card-prose">{pt.desc}</p>
-                  <div
-                    className="why-card-indicator"
-                    style={{ background: `linear-gradient(90deg, ${pt.color}, transparent)` }}
-                  />
+                  <h3 className="pillar-title">{pt.title}</h3>
+                  <p className="pillar-desc">{pt.desc}</p>
                 </div>
               );
             })}
           </div>
-
-          {/* Monolith Capabilities Bar: With XEN you can */}
-          <div className="with-xen-capabilities-bar">
-            <div className="with-xen-bar-inner">
-              <div className="with-xen-bar-title-col">
-                <span className="status-indicator-live" />
-                <h3 className="with-xen-bar-title">With XEN, you can:</h3>
-              </div>
-              <div className="with-xen-chips-grid">
-                {xenBenefits.map((benefit, i) => (
-                  <div key={i} className="with-xen-chip-card">
-                    <CheckCircle size={16} className="chip-check-icon" />
-                    <span className="chip-text">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ====================================================================
-          SECTION 9: DESIGNED FOR YOUR INDUSTRY
+          SECTION 6: DESIGNED FOR YOUR INDUSTRY
+          (PDF 1 Page 3)
           ==================================================================== */}
-      <section className="industries-video-section">
+      <section className="industry-overview-section">
         <div className="container">
-          <div className="industries-header-group">
+          <div className="section-header-centered industry-header-block">
             <span className="section-tag">Designed for Your Industry</span>
             <h2 className="section-title">
               Business Processes May Differ.<br />The Need for Integration Doesn't.
             </h2>
-            <div className="ribbon-gradient-bar" />
-            <p className="industries-lead-statement">
+            <div className="ribbon-gradient-bar ribbon-gradient-bar-center" />
+            <p className="industry-lead-text">
               XENedion is designed to support businesses operating across different industries and business environments.
             </p>
           </div>
 
-          <div className="industries-video-deck">
+          {/* Industry Cards Grid with generous top gap */}
+          <div className="industry-cards-grid">
             {industriesList.map((ind) => {
               const Icon = ind.icon;
               return (
-                <div key={ind.id} className="industry-video-card">
-                  <div className="industry-icon-vault">
+                <div key={ind.id} className="industry-feature-card reveal-card-anim">
+                  <div className="industry-icon-frame">
                     <Icon size={24} />
                   </div>
-                  <h3 className="industry-name">{ind.name}</h3>
-                  <p className="industry-description">{ind.detail}</p>
+                  <h3 className="industry-card-name">{ind.name}</h3>
+                  <p className="industry-card-detail">{ind.detail}</p>
                 </div>
               );
             })}
           </div>
 
-          <div className="industries-deck-action">
+          <div className="industry-cta-row">
             <button
               type="button"
               className="btn-pill-primary"
@@ -829,29 +551,25 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ====================================================================
-          SECTION 10: FINAL EXECUTIVE DEMO PORTAL
+          SECTION 7: READY TO BRING YOUR BUSINESS TOGETHER?
+          (PDF 1 Page 3)
           ==================================================================== */}
-      <section className="home-final-portal-section">
+      <section className="ready-cta-section">
         <div className="container">
-          <div className="final-portal-card">
-            <div className="portal-ambient-ribbon" aria-hidden="true" />
-            <div className="portal-content-wrap">
-              <h2 className="portal-headline">
-                Ready to Bring Your Business Together?
-              </h2>
-              <p className="portal-lead">
-                Move beyond disconnected applications and fragmented processes. Discover how XENedion can help you manage your business with greater clarity, control and efficiency.
-              </p>
-              <div className="portal-action-cluster">
-                <button
-                  type="button"
-                  className="btn-pill-primary btn-portal-large"
-                  onClick={() => onNavigate('contact')}
-                >
-                  <span>Request a Personalized Product Demonstration</span>
-                  <ArrowRight size={18} />
-                </button>
-              </div>
+          <div className="ready-cta-card reveal-card-anim">
+            <h2 className="ready-cta-title">Ready to Bring Your Business Together?</h2>
+            <p className="ready-cta-lead">
+              Connect your operations, eliminate silos, and take control of your business with XENedion.
+            </p>
+            <div className="ready-cta-action">
+              <button
+                type="button"
+                className="btn-pill-primary btn-demo-large"
+                onClick={() => onNavigate('contact')}
+              >
+                <span>Request a Personalized Product Demonstration</span>
+                <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         </div>
