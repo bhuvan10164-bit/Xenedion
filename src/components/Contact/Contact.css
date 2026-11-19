@@ -14,7 +14,7 @@
 .contact-hero-banner {
   background: linear-gradient(145deg, #091F40 0%, #0A378A 35%, #0F52D6 70%, #1264F5 100%);
   color: #FFFFFF;
-  padding-top: calc(var(--space-16) + 1.5rem);
+  padding-top: calc(var(--header-height, 96px) + 3.5rem);
   padding-bottom: var(--space-20);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
@@ -23,7 +23,7 @@
 
 @media (min-width: 1024px) {
   .contact-hero-banner {
-    padding-top: calc(var(--space-20) + 2rem);
+    padding-top: calc(var(--header-height, 96px) + 4.5rem);
     padding-bottom: var(--space-24);
   }
 }
