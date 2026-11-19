@@ -45,7 +45,7 @@ export default function Navbar({ activePage, setActivePage }) {
   };
 
   return (
-    <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : (activePage === 'home' ? 'navbar-hero-mode' : '')}`}>
+    <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-container">
         {/* Brand Logo with Clean Architectural Presentation */}
         <a
