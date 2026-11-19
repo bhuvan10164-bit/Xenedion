@@ -56,15 +56,15 @@ export default function Home({ onNavigate }) {
   ];
 
   const previewFunctions = [
-    { num: '01', title: 'CRM & Sales Management', desc: 'Build stronger customer relationships and manage your sales activities, opportunities, quotations and orders.', category: 'sales' },
-    { num: '02', title: 'Order Management', desc: 'Manage the complete order process, from order creation through processing and fulfillment.', category: 'operations' },
-    { num: '03', title: 'Procurement & Vendor Management', desc: 'Organize supplier relationships, purchasing activities, purchase orders and goods receipts.', category: 'supply' },
-    { num: '04', title: 'Inventory Management', desc: 'Maintain visibility into stock positions, movements and inventory transactions.', category: 'operations' },
-    { num: '05', title: 'Warehouse Management', desc: 'Bring greater structure and control to warehouse operations, stock handling and goods movement.', category: 'operations' },
-    { num: '06', title: 'Finance & Accounts', desc: 'Connect financial transactions with business operations and improve financial visibility.', category: 'finance' },
-    { num: '07', title: 'Human Resource Management', desc: 'Organize employee information and support structured human resource administration.', category: 'corporate' },
-    { num: '08', title: 'Logistics Management', desc: 'Coordinate logistics-related activities and improve operational communication.', category: 'supply' },
-    { num: '09', title: 'Business Intelligence & Reporting', desc: 'Bring business information together to support monitoring, analysis and management decisions.', category: 'finance' }
+    { id: 'crm', num: '01', title: 'CRM & Sales Management', desc: 'Build stronger customer relationships and manage your sales activities, opportunities, quotations and orders.', category: 'sales' },
+    { id: 'order', num: '02', title: 'Order Management', desc: 'Manage the complete order process, from order creation through processing and fulfillment.', category: 'operations' },
+    { id: 'procurement', num: '03', title: 'Procurement & Vendor Management', desc: 'Organize supplier relationships, purchasing activities, purchase orders and goods receipts.', category: 'supply' },
+    { id: 'inventory', num: '04', title: 'Inventory Management', desc: 'Maintain visibility into stock positions, movements and inventory transactions.', category: 'operations' },
+    { id: 'warehouse', num: '05', title: 'Warehouse Management', desc: 'Bring greater structure and control to warehouse operations, stock handling and goods movement.', category: 'operations' },
+    { id: 'finance', num: '06', title: 'Finance & Accounts', desc: 'Connect financial transactions with business operations and improve financial visibility.', category: 'finance' },
+    { id: 'hr', num: '07', title: 'Human Resource Management', desc: 'Organize employee information and support structured human resource administration.', category: 'corporate' },
+    { id: 'logistics', num: '08', title: 'Logistics Management', desc: 'Coordinate logistics-related activities and improve operational communication.', category: 'supply' },
+    { id: 'bi', num: '09', title: 'Business Intelligence & Reporting', desc: 'Bring business information together to support monitoring, analysis and management decisions.', category: 'finance' }
   ];
 
   const whyPoints = [
@@ -511,7 +511,7 @@ export default function Home({ onNavigate }) {
                   <button
                     type="button"
                     className="cap-action-link"
-                    onClick={() => onNavigate('solutions')}
+                    onClick={() => onNavigate('solutions', func.id)}
                   >
                     <span>View capability details</span>
                     <ArrowRight size={14} />
@@ -817,7 +817,12 @@ export default function Home({ onNavigate }) {
             {industriesList.map((ind) => {
               const Icon = ind.icon;
               return (
-                <div key={ind.id} className="industry-video-card">
+                <div
+                  key={ind.id}
+                  className="industry-video-card"
+                  onClick={() => onNavigate('industries', ind.id)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className="industry-icon-vault">
                     <Icon size={24} />
                   </div>

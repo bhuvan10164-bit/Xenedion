@@ -14,9 +14,26 @@ import './Industries.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Industries({ onNavigate }) {
-  const [selectedIndustry, setSelectedIndustry] = useState('retail');
+export default function Industries({ onNavigate, activeIndustryId, onIndustryChange }) {
+  const [selectedIndustry, setSelectedIndustry] = useState(activeIndustryId || 'retail');
   const industriesRef = useRef(null);
+  const pillsRef = useRef(null);
+
+  useEffect(() => {
+    if (activeIndustryId) {
+      setSelectedIndustry(activeIndustryId);
+      setTimeout(() => {
+        pillsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+    }
+  }, [activeIndustryId]);
+
+  const handleIndustrySelect = (indId) => {
+    setSelectedIndustry(indId);
+    if (onIndustryChange) {
+      onIndustryChange(indId);
+    }
+  };
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -147,7 +164,7 @@ export default function Industries({ onNavigate }) {
           </div>
 
           {/* Industry Selection Bar */}
-          <div className="industry-selection-pills">
+          <div className="industry-selection-pills" ref={pillsRef}>
             {industryProfiles.map((ind) => {
               const Icon = ind.icon;
               const isSelected = selectedIndustry === ind.id;
@@ -156,7 +173,7 @@ export default function Industries({ onNavigate }) {
                   key={ind.id}
                   type="button"
                   className={`industry-pill-btn ${isSelected ? 'industry-pill-active' : ''}`}
-                  onClick={() => setSelectedIndustry(ind.id)}
+                  onClick={() => handleIndustrySelect(ind.id)}
                 >
                   <Icon size={20} />
                   <span>{ind.name}</span>
@@ -241,8 +258,8 @@ export default function Industries({ onNavigate }) {
                     type="button"
                     className="deck-card-btn"
                     onClick={() => {
-                      setSelectedIndustry(ind.id);
-                      window.scrollTo({ top: 350, behavior: 'smooth' });
+                      handleIndustrySelect(ind.id);
+                      pillsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }}
                   >
                     <span>Inspect solution profile</span>

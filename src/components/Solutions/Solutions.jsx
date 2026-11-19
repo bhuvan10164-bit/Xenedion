@@ -19,9 +19,26 @@ import './Solutions.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Solutions({ onNavigate }) {
-  const [activeTab, setActiveTab] = useState('crm');
+export default function Solutions({ onNavigate, activeTabId, onTabChange }) {
+  const [activeTab, setActiveTab] = useState(activeTabId || 'crm');
   const solutionsRef = useRef(null);
+  const tabsNavRef = useRef(null);
+
+  useEffect(() => {
+    if (activeTabId) {
+      setActiveTab(activeTabId);
+      setTimeout(() => {
+        tabsNavRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+    }
+  }, [activeTabId]);
+
+  const handleTabSelect = (tabId) => {
+    setActiveTab(tabId);
+    if (onTabChange) {
+      onTabChange(tabId);
+    }
+  };
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -208,7 +225,7 @@ export default function Solutions({ onNavigate }) {
           </div>
 
           {/* Interactive Function Navigator */}
-          <div className="solutions-tabs-nav">
+          <div className="solutions-tabs-nav" ref={tabsNavRef}>
             {solutionsData.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -217,7 +234,7 @@ export default function Solutions({ onNavigate }) {
                   key={item.id}
                   type="button"
                   className={`solutions-tab-pill ${isActive ? 'tab-pill-active' : ''}`}
-                  onClick={() => setActiveTab(item.id)}
+                  onClick={() => handleTabSelect(item.id)}
                 >
                   <Icon size={17} />
                   <span>{item.title}</span>
@@ -318,8 +335,8 @@ export default function Solutions({ onNavigate }) {
                       type="button"
                       className="solution-select-btn"
                       onClick={() => {
-                        setActiveTab(sol.id);
-                        window.scrollTo({ top: 380, behavior: 'smooth' });
+                        handleTabSelect(sol.id);
+                        tabsNavRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                       }}
                     >
                       <span>Explore this module</span>

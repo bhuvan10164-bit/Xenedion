@@ -9,23 +9,23 @@ export default function Footer({ onNavigate }) {
   };
 
   const solutionsLinks = [
-    'CRM & Sales',
-    'Order Management',
-    'Procurement',
-    'Inventory',
-    'Warehouse',
-    'Finance & Accounts',
-    'HR',
-    'Logistics',
-    'Reporting'
+    { label: 'CRM & Sales', id: 'crm' },
+    { label: 'Order Management', id: 'order' },
+    { label: 'Procurement', id: 'procurement' },
+    { label: 'Inventory', id: 'inventory' },
+    { label: 'Warehouse', id: 'warehouse' },
+    { label: 'Finance & Accounts', id: 'finance' },
+    { label: 'HR', id: 'hr' },
+    { label: 'Logistics', id: 'logistics' },
+    { label: 'Reporting', id: 'bi' }
   ];
 
   const industriesLinks = [
-    'Retail',
-    'Distribution',
-    'Manufacturing',
-    'Garments',
-    'Automotive'
+    { label: 'Retail', id: 'retail' },
+    { label: 'Distribution', id: 'distribution' },
+    { label: 'Manufacturing', id: 'manufacturing' },
+    { label: 'Garments', id: 'garments' },
+    { label: 'Automotive', id: 'automotive' }
   ];
 
   const companyLinks = [
@@ -105,16 +105,16 @@ export default function Footer({ onNavigate }) {
                 <h4 className="footer-col-title">Solutions</h4>
                 <ul className="footer-link-list">
                   {solutionsLinks.map((sol) => (
-                    <li key={sol}>
+                    <li key={sol.id}>
                       <button
                         type="button"
                         className="footer-link-btn"
                         onClick={() => {
-                          onNavigate('solutions');
+                          onNavigate('solutions', sol.id);
                           scrollToTop();
                         }}
                       >
-                        {sol}
+                        {sol.label}
                       </button>
                     </li>
                   ))}
@@ -126,16 +126,16 @@ export default function Footer({ onNavigate }) {
                 <h4 className="footer-col-title">Industries</h4>
                 <ul className="footer-link-list">
                   {industriesLinks.map((ind) => (
-                    <li key={ind}>
+                    <li key={ind.id}>
                       <button
                         type="button"
                         className="footer-link-btn"
                         onClick={() => {
-                          onNavigate('industries');
+                          onNavigate('industries', ind.id);
                           scrollToTop();
                         }}
                       >
-                        {ind}
+                        {ind.label}
                       </button>
                     </li>
                   ))}

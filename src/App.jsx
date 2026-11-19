@@ -17,6 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [activePage, setActivePage] = useState('home');
+  const [solutionTab, setSolutionTab] = useState('crm');
+  const [industryTab, setIndustryTab] = useState('retail');
   const lenisRef = useRef(null);
 
   // Initialize Lenis Smooth Scrolling & synchronize with GSAP ScrollTrigger
@@ -72,8 +74,14 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (pageId) => {
+  const handleNavigate = (pageId, subTabId) => {
     setActivePage(pageId);
+    if (pageId === 'solutions' && subTabId) {
+      setSolutionTab(subTabId);
+    }
+    if (pageId === 'industries' && subTabId) {
+      setIndustryTab(subTabId);
+    }
     window.location.hash = pageId === 'home' ? '' : `#${pageId}`;
     
     if (lenisRef.current) {
@@ -101,8 +109,20 @@ export default function App() {
       <main id="main-content">
         {activePage === 'home' && <Home onNavigate={handleNavigate} />}
         {activePage === 'about' && <About onNavigate={handleNavigate} />}
-        {activePage === 'solutions' && <Solutions onNavigate={handleNavigate} />}
-        {activePage === 'industries' && <Industries onNavigate={handleNavigate} />}
+        {activePage === 'solutions' && (
+          <Solutions
+            onNavigate={handleNavigate}
+            activeTabId={solutionTab}
+            onTabChange={setSolutionTab}
+          />
+        )}
+        {activePage === 'industries' && (
+          <Industries
+            onNavigate={handleNavigate}
+            activeIndustryId={industryTab}
+            onIndustryChange={setIndustryTab}
+          />
+        )}
         {activePage === 'partners' && <Partners onNavigate={handleNavigate} />}
         {activePage === 'resources' && <Resources onNavigate={handleNavigate} />}
         {activePage === 'contact' && <Contact onNavigate={handleNavigate} />}
