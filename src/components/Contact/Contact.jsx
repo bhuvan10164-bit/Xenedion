@@ -12,10 +12,7 @@ import {
   Layers,
   Users2,
   Settings,
-  MessageSquare,
-  MapPin,
-  Clock,
-  ArrowRight
+  MessageSquare
 } from 'lucide-react';
 import './Contact.css';
 
@@ -80,30 +77,6 @@ export default function Contact() {
     'General ERP modernization / New implementation'
   ];
 
-  const locationCards = [
-    {
-      city: 'Paris, France',
-      address: '12/A, New Parklin Tower, Commercial District',
-      email: 'info@xenedion.com',
-      phone: '+33 (0) 1 42 68 55 00',
-      image: '/assets/images/connected-operations.jpg'
-    },
-    {
-      city: 'New York, US',
-      address: 'Into Tower, 5th Avenue, NYC 10018',
-      email: 'contact@xenedion.com',
-      phone: '+1 (212) 555-0199',
-      image: '/assets/images/modern-manufacturing.jpg'
-    },
-    {
-      city: 'Berlin, Germany',
-      address: 'Gorik Street Hall, Mitte Tech District',
-      email: 'enterprise@xenedion.com',
-      phone: '+49 30 2095 8800',
-      image: '/assets/images/inventory-fulfillment.jpg'
-    }
-  ];
-
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
@@ -113,12 +86,6 @@ export default function Contact() {
         '.contact-hero-banner',
         { y: 35, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out' }
-      );
-
-      gsap.fromTo(
-        '.contact-location-card',
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out' }
       );
 
       gsap.fromTo(
@@ -159,39 +126,7 @@ export default function Contact() {
       </section>
 
       {/* --------------------------------------------------------------------
-          3-COLUMN LOCATION CARDS (Matching Video 00:26 - 00:27)
-          -------------------------------------------------------------------- */}
-      <section className="contact-locations-strip">
-        <div className="container">
-          <div className="contact-locations-grid">
-            {locationCards.map((loc, idx) => (
-              <div key={idx} className="contact-location-card">
-                <div className="location-image-frame">
-                  <img src={loc.image} alt={loc.city} className="location-img" />
-                </div>
-                <div className="location-card-content">
-                  <h3 className="location-city-name">{loc.city}</h3>
-                  <p className="location-meta-row location-email">
-                    <Mail size={14} />
-                    <span>{loc.email}</span>
-                  </p>
-                  <p className="location-meta-row location-phone">
-                    <Phone size={14} />
-                    <span>{loc.phone}</span>
-                  </p>
-                  <p className="location-meta-row location-address">
-                    <MapPin size={14} />
-                    <span>{loc.address}</span>
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --------------------------------------------------------------------
-          SPLIT FORM & INTERACTIVE MAP SECTION (Matching Video 00:28 - 00:29)
+          CONTACT ENQUIRY FORM SECTION
           -------------------------------------------------------------------- */}
       <section className="contact-form-section">
         <div className="container">

@@ -82,95 +82,9 @@
   color: #FFFFFF !important;
 }
 
-/* --------------------------------------------------------------------------
-   3-Column Location Cards (Matching Video 00:26 - 00:27)
-   -------------------------------------------------------------------------- */
-.contact-locations-strip {
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-12);
-  background-color: var(--color-off-white);
-  border-bottom: 1px solid var(--color-border-subtle);
-}
-
-.contact-locations-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .contact-locations-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.contact-location-card {
-  background-color: #FFFFFF;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(9, 31, 64, 0.08);
-  box-shadow: 0 8px 25px rgba(9, 31, 64, 0.04);
-  transition: transform 220ms ease, box-shadow 220ms ease;
-}
-
-.contact-location-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 35px rgba(9, 31, 64, 0.08);
-}
-
-.location-image-frame {
-  width: 100%;
-  height: 170px;
-  overflow: hidden;
-}
-
-.location-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 300ms ease;
-}
-
-.contact-location-card:hover .location-img {
-  transform: scale(1.04);
-}
-
-.location-card-content {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.location-city-name {
-  font-family: var(--font-heading);
-  font-size: 1.1875rem;
-  font-weight: 700;
-  color: var(--color-primary-navy);
-  margin-bottom: 0.25rem;
-}
-
-.location-meta-row {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  font-size: 0.84rem;
-  color: var(--color-text-secondary);
-  margin: 0;
-}
-
-.location-meta-row svg {
-  color: var(--color-electric-blue);
-  flex-shrink: 0;
-}
-
-/* --------------------------------------------------------------------------
-   Split Form & Interactive Map (Matching Video 00:28 - 00:29)
-   -------------------------------------------------------------------------- */
 .contact-form-section {
-  padding-top: var(--space-20);
-  padding-bottom: var(--space-24);
+  padding-top: 3.5rem;
+  padding-bottom: 5.5rem;
   background-color: #FFFFFF;
 }
 
@@ -284,75 +198,7 @@
   font-size: 0.9375rem;
 }
 
-/* --------------------------------------------------------------------------
-   Interactive Map Card (Matching Video 00:28 - 00:29)
-   -------------------------------------------------------------------------- */
-.contact-map-wrapper {
-  position: sticky;
-  top: 100px;
-}
 
-.map-card-container {
-  background-color: #FFFFFF;
-  border-radius: 20px;
-  border: 1px solid rgba(9, 31, 64, 0.08);
-  box-shadow: 0 16px 45px rgba(9, 31, 64, 0.06);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.map-card-top-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  background-color: var(--color-off-white);
-  padding: 0.85rem 1.25rem;
-  border-bottom: 1px solid var(--color-border-subtle);
-}
-
-.map-indicator-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-electric-blue);
-  box-shadow: 0 0 8px var(--color-electric-blue);
-}
-
-.map-top-title {
-  font-family: var(--font-heading);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-primary-navy);
-}
-
-.map-frame-box {
-  width: 100%;
-  height: 380px;
-  background-color: #EAECF0;
-}
-
-.map-card-info-footer {
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  background-color: #FFFFFF;
-  border-top: 1px solid var(--color-border-subtle);
-}
-
-.map-info-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.84rem;
-  color: var(--color-text-secondary);
-}
-
-.map-footer-icon {
-  color: var(--color-electric-blue);
-  flex-shrink: 0;
-}
 
 .text-cyan {
   color: #00DDFC !important;
