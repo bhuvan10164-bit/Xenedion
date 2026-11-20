@@ -163,7 +163,7 @@
 
 .hero-video-headline {
   font-family: var(--font-heading);
-  font-size: clamp(1.65rem, 4.4vw + 0.4rem, 4.05rem);
+  font-size: clamp(1.35rem, 3.6vw + 0.35rem, 3.35rem);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.025em;
@@ -176,7 +176,7 @@
 
 @media (max-width: 480px) {
   .hero-video-headline {
-    font-size: clamp(1.45rem, 7.5vw, 2.05rem);
+    font-size: clamp(1.2rem, 6.2vw, 1.7rem);
     line-height: 1.16;
   }
 }
