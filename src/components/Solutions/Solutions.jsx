@@ -271,7 +271,7 @@ export default function Solutions({ onNavigate, activeTabId, onTabChange }) {
                   className="btn-primary"
                   onClick={() => onNavigate('contact')}
                 >
-                  <span>Request a Solution Demo</span>
+                  <span>Request a Demo</span>
                   <ArrowRight size={16} />
                 </button>
               </div>
