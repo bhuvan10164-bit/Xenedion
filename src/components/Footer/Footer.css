@@ -47,7 +47,7 @@
 
 .footer-prompt-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
   font-weight: 700;
   color: #FFFFFF;
   margin-bottom: 0.35rem;
@@ -78,6 +78,12 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
+@media (max-width: 640px) {
+  .footer-prompt-pill-btn {
+    align-self: flex-start;
+  }
+}
+
 .footer-prompt-pill-btn:hover {
   background-color: #00DDFC;
   color: #091F40;
@@ -89,15 +95,29 @@
    Main Footer Container & Grid
    -------------------------------------------------------------------------- */
 .footer-main-container {
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-12);
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .footer-main-container {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-12);
+  }
 }
 
 .footer-columns-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3.5rem;
-  margin-bottom: 4rem;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer-columns-grid {
+    gap: 3.5rem;
+    margin-bottom: 4rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -152,6 +172,13 @@
   border: 1px solid rgba(9, 31, 64, 0.08);
 }
 
+@media (max-width: 640px) {
+  .footer-office-preview-card {
+    max-width: 100%;
+    height: 190px;
+  }
+}
+
 .footer-office-preview-img {
   width: 100%;
   height: 100%;
@@ -181,13 +208,22 @@
 
 .footer-monumental-wordmark {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 700;
   line-height: 1;
   color: rgba(9, 31, 64, 0.06);
   letter-spacing: -0.03em;
   margin-bottom: 2.5rem;
   user-select: none;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .footer-monumental-wordmark {
+    font-size: clamp(1.85rem, 11vw, 3rem);
+    margin-bottom: 1.75rem;
+  }
 }
 
 .footer-links-tri-column {
@@ -277,6 +313,18 @@
   color: var(--color-text-muted);
   margin-bottom: 0;
   font-weight: 500;
+}
+
+.footer-powered-link {
+  color: var(--color-electric-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast, 150ms ease), text-decoration var(--transition-fast, 150ms ease);
+}
+
+.footer-powered-link:hover {
+  text-decoration: underline;
+  color: #0B51CF;
 }
 
 .footer-copyright-text {

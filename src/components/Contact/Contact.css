@@ -14,11 +14,19 @@
 .contact-hero-banner {
   background: linear-gradient(145deg, #091F40 0%, #0A378A 35%, #0F52D6 70%, #1264F5 100%);
   color: #FFFFFF;
-  padding-top: calc(var(--header-height, 96px) + 3.5rem);
-  padding-bottom: var(--space-20);
+  padding-top: calc(var(--header-height, 96px) + 2rem);
+  padding-bottom: var(--space-16);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .contact-hero-banner {
+    padding-top: calc(var(--header-height, 96px) + 3.5rem);
+    padding-bottom: var(--space-20);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -33,6 +41,7 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  width: 100%;
 }
 
 .contact-tag-pill {
@@ -51,22 +60,39 @@
   margin-bottom: 1.5rem;
 }
 
+@media (max-width: 480px) {
+  .contact-tag-pill {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.85rem;
+  }
+}
+
 .contact-hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4vw + 0.5rem, 3.8rem);
+  font-size: clamp(1.65rem, 4vw + 0.5rem, 3.6rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.025em;
   color: #FFFFFF;
   margin-bottom: 0.75rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (max-width: 480px) {
+  .contact-hero-title {
+    font-size: clamp(1.45rem, 7vw, 2.15rem);
+  }
 }
 
 .contact-hero-subtitle {
   font-family: var(--font-heading);
-  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
   font-weight: 600;
   color: #E0F2FE;
   margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .contact-hero-paragraphs p {
@@ -106,7 +132,7 @@
 
 .form-sub-headline {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  font-size: clamp(1.3rem, 2.4vw, 2.0rem);
   font-weight: 700;
   color: var(--color-primary-navy);
   margin-top: 0.75rem;
@@ -116,9 +142,15 @@
 .contact-form-wrapper {
   background-color: #FFFFFF;
   border-radius: 24px;
-  padding: 2.5rem 2rem;
+  padding: 1.75rem 1.25rem;
   border: 1px solid rgba(9, 31, 64, 0.08);
   box-shadow: 0 16px 45px rgba(9, 31, 64, 0.05);
+}
+
+@media (min-width: 640px) {
+  .contact-form-wrapper {
+    padding: 2.5rem 2rem;
+  }
 }
 
 @media (min-width: 768px) {

@@ -170,7 +170,16 @@ export default function Footer({ onNavigate }) {
         <div className="footer-bottom-bar">
           <div className="footer-copyright-wrap">
             <p className="footer-powered-by">
-              Powered by Astrion Digital Private Limited
+              Powered by{' '}
+              <a
+                href="https://astriondigital.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-powered-link"
+              >
+                Astrion Digital
+              </a>{' '}
+              Private Limited
             </p>
             <p className="footer-copyright-text">
               © 2026 XENedion. All Rights Reserved.

@@ -106,7 +106,7 @@ export default function Partners({ onNavigate }) {
                 className="btn-primary"
                 onClick={() => onNavigate('contact')}
               >
-                <span>Apply for the Partner Program</span>
+                <span>Become a XENedion Partner</span>
                 <ArrowRight size={17} className="btn-icon" />
               </button>
             </div>

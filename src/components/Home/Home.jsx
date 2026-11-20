@@ -302,7 +302,8 @@ export default function Home({ onNavigate }) {
                 <h1 className="hero-video-headline">
                   <span className="hero-headline-row headline-row-1">Your Business.</span>
                   <span className="hero-headline-row headline-row-2">
-                    Connected. Controlled. Informed.
+                    Connected. Controlled.{' '}
+                    <span className="hero-headline-break">Informed.</span>
                   </span>
                 </h1>
               </div>
@@ -432,6 +433,13 @@ export default function Home({ onNavigate }) {
               <span className="marquee-chip">• Operational Visibility</span>
               <span className="marquee-chip">• Scalable Enterprise Architecture</span>
               <span className="marquee-chip">• Cross-Department Governance</span>
+              <span className="marquee-chip" aria-hidden="true">• Single Source of Truth</span>
+              <span className="marquee-chip" aria-hidden="true">• Integrated Workflows</span>
+              <span className="marquee-chip" aria-hidden="true">• Real-Time Synchronization</span>
+              <span className="marquee-chip" aria-hidden="true">• Multi-Location Coordination</span>
+              <span className="marquee-chip" aria-hidden="true">• Operational Visibility</span>
+              <span className="marquee-chip" aria-hidden="true">• Scalable Enterprise Architecture</span>
+              <span className="marquee-chip" aria-hidden="true">• Cross-Department Governance</span>
             </div>
           </div>
         </div>
